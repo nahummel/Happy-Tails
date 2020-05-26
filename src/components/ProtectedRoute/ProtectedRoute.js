@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import AdoptionLoginPage from '../AdoptionLoginPage/AdoptionLoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterPage from '../CreateNewAccountPage/CreateNewAccount';
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component

@@ -45,30 +45,20 @@ class AdoptionLoginPage extends Component {
           <div>
             <label htmlFor="username">
               Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
+              <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleInputChangeFor('username')}/>
             </label>
           </div>
           <div>
             <label htmlFor="password">
               Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
+              <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleInputChangeFor('password')}/>
             </label>
           </div>
           <div>
-            <button type="button" onClick={this.handleLogin}>Login</button>
+            <button onClick={this.handleLogin}>Login</button>
           </div>
           <div>
-            <button type="button" onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}>Sign-Up</button>
+            <button onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}>Sign-Up</button>
           </div>
         </form>
       </div>

@@ -40,7 +40,7 @@ class RescueLoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form>
           <h1>Adoption Login</h1>
           <div>
             <label htmlFor="username">
