@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class LoginPage extends Component {
+class AdoptionLoginPage extends Component {
   state = {
     username: '',
     password: '',
   };
 
-  login = (event) => {
+  handleLogin = (event) => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
@@ -41,7 +41,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
+          <h1>Adoption Login</h1>
           <div>
             <label htmlFor="username">
               Username:
@@ -65,23 +65,12 @@ class LoginPage extends Component {
             </label>
           </div>
           <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
+            <button type="button" onClick={this.handleLogin}>Login</button>
+          </div>
+          <div>
+            <button type="button" onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}>Sign-Up</button>
           </div>
         </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Sign Up
-          </button>
-        </center>
       </div>
     );
   }
@@ -94,4 +83,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(AdoptionLoginPage);
