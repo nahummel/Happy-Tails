@@ -23,6 +23,10 @@ class AdoptionLoginPage extends Component {
     }
   } // end login
 
+  handleSignUp = () => {
+    this.props.history.push('/usersignup')
+  }
+
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -58,7 +62,7 @@ class AdoptionLoginPage extends Component {
             <button onClick={this.handleLogin}>Login</button>
           </div>
           <div>
-            <button onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}>Sign-Up</button>
+            <button onClick={this.handleSignUp}>Sign-Up</button>
           </div>
         </form>
       </div>

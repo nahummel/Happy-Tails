@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
 class LandingPage extends Component {
+
+    handleAdopt = () => {
+        this.props.history.push('/adoptionlogin')
+    }
+
     render() {
         return(
             <>
@@ -8,7 +13,7 @@ class LandingPage extends Component {
                     <h1>Happy Tails</h1>
                 </header>
                 <div className='landingPageButtons'>
-                    <button>I am looking to Adopt</button>
+                    <button onClick={this.handleAdopt}>I am looking to Adopt</button>
                     <button>I am a Rescue or Shelter</button>
                 </div>
                 <div>

@@ -37,6 +37,14 @@ class CreateNewAccountPage extends Component {
     });
   }
 
+  handleBack = () => {
+    this.props.history.push('/adoptionlogin')
+  }
+
+  handleNext = () => {
+    this.props.history.push('/userquestionnaire')
+  }
+
   render() {
     return (
       <div>
@@ -93,10 +101,10 @@ class CreateNewAccountPage extends Component {
             </label>
           </div>
           <div>
-            <button>Next</button>
+            <button onClick={this.handleNext}>Next</button>
           </div>
           <div>
-            <button onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}>Back to Login</button>
+            <button onClick={this.handleBack}>Back to Login</button>
           </div>
         </form>
       </div>
