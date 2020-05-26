@@ -25,7 +25,7 @@ CREATE TABLE "rescues" (
     "state" VARCHAR (25),
     "zipcode" INT,
     "phone" INT,
-    "email" VARCHAR (255),
+    "email" VARCHAR (255)
 );
 
 CREATE TABLE "dogs" (
