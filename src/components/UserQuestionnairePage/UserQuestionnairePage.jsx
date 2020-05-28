@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { array } from 'prop-types';
 
 class UserQuestionnairePage extends Component {
     state = {
@@ -15,11 +16,57 @@ class UserQuestionnairePage extends Component {
         health: false,
     }
 
-    handleChecked = (event) => {
-        if (event.target.checked) {
-            console.log('tiny checked')
-        } else {
-            console.log('tiny unchecked')
+    handleChecked = (event, property) => {
+        if(property === 'size') {
+            if (event.target.checked) {
+                console.log(event.target.id)
+                this.setState({
+                    size: [...this.state.size, event.target.id]
+                })
+            } else if (event.target.checked === false){
+                let array = [...this.state.size]
+                let index = array.indexOf(event.target.id);
+                if(index !== -1){
+                    array.splice(index, 1);
+                    this.setState({
+                        size: array
+                    })
+                } 
+            }
+        }
+        if (property === 'age') {
+            if (event.target.checked) {
+                console.log(event.target.id)
+                this.setState({
+                    age: [...this.state.age, event.target.id]
+                })
+            } else if (event.target.checked === false) {
+                let array = [...this.state.age]
+                let index = array.indexOf(event.target.id);
+                if (index !== -1) {
+                    array.splice(index, 1);
+                    this.setState({
+                        age: array
+                    })
+                }
+            }
+        }
+        if (property === 'sex') {
+            if (event.target.checked) {
+                console.log(event.target.id)
+                this.setState({
+                    sex: [...this.state.sex, event.target.id]
+                })
+            } else if (event.target.checked === false) {
+                let array = [...this.state.sex]
+                let index = array.indexOf(event.target.id);
+                if (index !== -1) {
+                    array.splice(index, 1);
+                    this.setState({
+                        sex: array
+                    })
+                }
+            }
         }
     }
 
@@ -103,8 +150,8 @@ class UserQuestionnairePage extends Component {
     }
 
     handleNext = () => {
-        // this.props.history.push('/userreview')
-        console.log(this.state)
+        this.props.history.push('/userreview')
+        
     }
 
 
@@ -123,25 +170,25 @@ class UserQuestionnairePage extends Component {
                         <h4>What size of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="tiny" onChange={this.handleChecked}></input>
+                                <input type="checkbox" id="tiny" onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Tiny
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="small"></input>
+                                <input type="checkbox" id="small" onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Small
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="medium"></input>
+                                <input type="checkbox" id="medium" onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Medium
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="large"></input>
+                                <input type="checkbox" id="large" onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Large
                             </label>
                         </div>
@@ -150,19 +197,19 @@ class UserQuestionnairePage extends Component {
                         <h4>What age of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="young"></input>
+                                <input type="checkbox" id="young" onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Young
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="adult"></input>
+                                <input type="checkbox" id="adult" onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Adult
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="senior"></input>
+                                <input type="checkbox" id="senior" onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Senior
                             </label>
                         </div>
@@ -171,13 +218,13 @@ class UserQuestionnairePage extends Component {
                         <h4>What gender of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="male"></input>
+                                <input type="checkbox" id="male" onChange={(event) => this.handleChecked(event, 'sex')}></input>
                                 Male
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="female"></input>
+                                <input type="checkbox" id="female" onChange={(event) => this.handleChecked(event, 'sex')}></input>
                                 Female
                             </label>
                         </div>
