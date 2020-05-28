@@ -15,20 +15,29 @@ class CreateNewAccountPage extends Component {
     email:'',
   };
 
-  registerUser = (event) => {
+  handleNext = (event) => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
       this.props.dispatch({
-        type: 'REGISTER',
+        type: 'STORE_INFO',
         payload: {
           username: this.state.username,
           password: this.state.password,
+          f_name: this.state.f_name,
+          l_name: this.state.l_name,
+          street: this.state.street,
+          city: this.state.city,
+          state: this.state.state,
+          zipcode: this.state.zipcode,
+          phone: this.state.phone,
+          email: this.state.email
         },
       });
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
+    this.props.history.push('/userquestionnaire')
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {
@@ -39,10 +48,6 @@ class CreateNewAccountPage extends Component {
 
   handleBack = () => {
     this.props.history.push('/adoptionlogin')
-  }
-
-  handleNext = () => {
-    this.props.history.push('/userquestionnaire')
   }
 
   render() {
