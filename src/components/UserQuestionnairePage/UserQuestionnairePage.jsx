@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { array } from 'prop-types';
+import { connect } from 'react-redux';
 
 class UserQuestionnairePage extends Component {
     state = {
@@ -150,9 +150,26 @@ class UserQuestionnairePage extends Component {
     }
 
     handleNext = () => {
-        this.props.history.push('/userreview')
-        
+        // this.props.history.push('/userreview')
+        console.log(this.state)
+        this.props.dispatch({
+            type: 'STORE_ANWSERS',
+            payload: {
+                size: this.state.size,
+                age: this.state.age,
+                sex: this.state.sex,
+                rent: this.state.rent,
+                dogs: this.state.dogs,
+                cats: this.state.cats,
+                kids: this.state.kids,
+                active: this.state.active,
+                groom: this.state.groom,
+                train: this.state.train,
+                health: this.state.health,
+            },
+        });
     }
+    
 
 
     render() {
@@ -357,4 +374,8 @@ class UserQuestionnairePage extends Component {
     }
 }
 
-export default (UserQuestionnairePage);
+const mapStateToProps = state => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps)(UserQuestionnairePage);
