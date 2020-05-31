@@ -15,6 +15,7 @@ class CreateNewAccountPage extends Component {
     email:'',
   };
 
+
   handleNext = (event) => {
     event.preventDefault();
 

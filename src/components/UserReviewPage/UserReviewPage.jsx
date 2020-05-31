@@ -1,15 +1,89 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class UserReviewPage extends Component {
+    componentDidMount(){
+        console.log(`USER`,this.props.reduxState)
+    }
+    
+    conditionals = (question) => {
+        if (question) {
+            return(
+            <p>Yes</p>
+            )
+        } else {
+            return(
+            <p>No</p>
+            )
+        }
+    }
+
     render() {
         return (
             <>
                 <h3>Create Account</h3>
                 <h3>Quesionnaire</h3>
                 <h3>Review</h3>
+                <div>
+                    <h2>Personal Information</h2>
+                    <h4>Name:</h4>
+                    <p>{this.props.userInfo.f_name} {this.props.userInfo.l_name}</p>
+                    <h4>Address:</h4>
+                    <p>{this.props.userInfo.street}</p>
+                    <p>{this.props.userInfo.city}, {this.props.userInfo.state}</p>
+                    <p>{this.props.userInfo.zipcode}</p>
+                    <h4>Phone:</h4>
+                    <p>{this.props.userInfo.phone}</p>
+                    <h4>E-mail:</h4>
+                    <p>{this.props.userInfo.email}</p>
+                    <button>Edit</button>
+                </div>
+                <div>
+                    <h2>Matching Questionnaire</h2>
+                    <h4>What size of dog do you prefer?</h4>
+                    {this.props.userQuest.size.map((size) => {
+                        return(
+                            <p>{size}</p>
+                        )
+                    })}
+                    <h4>What age of dog do you prefer?</h4>
+                    {this.props.userQuest.age.map((age) => {
+                        return (
+                            <p>{age}</p>
+                        )
+                    })}
+                    <h4>What gender of dog do you prefer?</h4>
+                    {this.props.userQuest.sex.map((sex) => {
+                        return (
+                            <p>{sex}</p>
+                        )
+                    })}
+                    <h4>Do you rent your home</h4>
+                    {this.conditionals(this.props.userQuest.rent)}
+                    <h4>Do have other dogs at home?</h4>
+                    {this.conditionals(this.props.userQuest.dogs)}
+                    <h4>Do have cats at home?</h4>
+                    {this.conditionals(this.props.userQuest.cats)}
+                    <h4>Do you live with children?</h4>
+                    {this.conditionals(this.props.userQuest.kids)}
+                    <h4>Do like to stay physically active (running, hiking, ect.)?</h4>
+                    {this.conditionals(this.props.userQuest.active)}
+                    <h4>Are you willing to put a lot of time/expense into grooming your dog?</h4>
+                    {this.conditionals(this.props.userQuest.groom)}
+                    <h4>Do you have experince in training dogs?</h4>
+                    {this.conditionals(this.props.userQuest.train)}
+                    <h4>Are you willing to adopt a dog that has health problems?</h4>
+                    {this.conditionals(this.props.userQuest.health)}
+                    <button>Edit</button>
+                </div>
+                <div>
+                    <button>Register</button>
+                </div>
             </>
         )
     }
 }
 
-export default (UserReviewPage);
+const putStateOnProps = (reduxState) => ({ userInfo: reduxState.userInfo, userQuest: reduxState.userQuest });
+
+export default connect(putStateOnProps)(UserReviewPage);

@@ -150,7 +150,7 @@ class UserQuestionnairePage extends Component {
     }
 
     handleNext = () => {
-        // this.props.history.push('/userreview')
+        this.props.history.push('/userreview')
         console.log(this.state)
         this.props.dispatch({
             type: 'STORE_ANWSERS',
@@ -169,8 +169,6 @@ class UserQuestionnairePage extends Component {
             },
         });
     }
-    
-
 
     render() {
         return (
