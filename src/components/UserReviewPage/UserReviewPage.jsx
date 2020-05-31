@@ -18,6 +18,46 @@ class UserReviewPage extends Component {
         }
     }
 
+    registerUser = () => {
+
+        if (this.props.userInfo.username && this.props.userInfo.password) {
+            this.props.dispatch({
+                type: 'REGISTER',
+                payload: {
+                    username: this.props.userInfo.username,
+                    password: this.props.userInfo.password,
+                    f_name: this.props.userInfo.f_name,
+                    l_name: this.props.userInfo.l_name,
+                    street: this.props.userInfo.street,
+                    city: this.props.userInfo.city,
+                    state: this.props.userInfo.state,
+                    zipcode: this.props.userInfo.zipcode,
+                    phone: this.props.userInfo.phone,
+                    email: this.props.userInfo.email,
+                    size: this.props.userQuest.size,
+                    age: this.props.userQuest.age,
+                    sex: this.props.userQuest.sex,
+                    rent: this.props.userQuest.rent,
+                    dogs: this.props.userQuest.dogs,
+                    cats: this.props.userQuest.cats,
+                    kids: this.props.userQuest.kids,
+                    active: this.props.userQuest.active,
+                    groom: this.props.userQuest.groom,
+                    train: this.props.userQuest.train,
+                    health: this.props.userQuest.health,
+                },
+            });
+        } else {
+            this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+        }
+    } // end registerUser
+
+    handleInputChangeFor = propertyName => (event) => {
+        this.setState({
+            [propertyName]: event.target.value,
+        });
+    }
+
     render() {
         return (
             <>
@@ -43,19 +83,19 @@ class UserReviewPage extends Component {
                     <h4>What size of dog do you prefer?</h4>
                     {this.props.userQuest.size.map((size) => {
                         return(
-                            <p>{size}</p>
+                            <p key={size}>{size}</p>
                         )
                     })}
                     <h4>What age of dog do you prefer?</h4>
                     {this.props.userQuest.age.map((age) => {
                         return (
-                            <p>{age}</p>
+                            <p key={age}>{age}</p>
                         )
                     })}
                     <h4>What gender of dog do you prefer?</h4>
                     {this.props.userQuest.sex.map((sex) => {
                         return (
-                            <p>{sex}</p>
+                            <p key={sex}>{sex}</p>
                         )
                     })}
                     <h4>Do you rent your home</h4>
@@ -77,7 +117,7 @@ class UserReviewPage extends Component {
                     <button>Edit</button>
                 </div>
                 <div>
-                    <button>Register</button>
+                    <button onClick={this.registerUser()}>Register</button>
                 </div>
             </>
         )
