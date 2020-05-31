@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class UserReviewPage extends Component {
-    componentDidMount(){
-        console.log(`USER`,this.props.reduxState)
-    }
+    
     
     conditionals = (question) => {
         if (question) {
@@ -117,7 +115,7 @@ class UserReviewPage extends Component {
                     <button>Edit</button>
                 </div>
                 <div>
-                    <button onClick={this.registerUser()}>Register</button>
+                    <button onClick={this.registerUser}>Register</button>
                 </div>
             </>
         )

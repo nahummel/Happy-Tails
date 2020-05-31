@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class LandingPage extends Component {
 
     handleAdopt = () => {
-        this.props.history.push('/adoptionlogin')
+        this.props.history.push('/home')
     }
 
     render() {

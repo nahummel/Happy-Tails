@@ -150,8 +150,6 @@ class UserQuestionnairePage extends Component {
     }
 
     handleNext = () => {
-        this.props.history.push('/userreview')
-        console.log(this.state)
         this.props.dispatch({
             type: 'STORE_ANWSERS',
             payload: {
@@ -168,6 +166,7 @@ class UserQuestionnairePage extends Component {
                 health: this.state.health,
             },
         });
+        this.props.onClick()
     }
 
     render() {

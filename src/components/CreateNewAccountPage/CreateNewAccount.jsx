@@ -18,8 +18,6 @@ class CreateNewAccountPage extends Component {
 
   handleNext = (event) => {
     event.preventDefault();
-
-    if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'STORE_INFO',
         payload: {
@@ -35,10 +33,7 @@ class CreateNewAccountPage extends Component {
           email: this.state.email
         },
       });
-    } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-    }
-    this.props.history.push('/userquestionnaire')
+    this.props.onClick()
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {

@@ -30,10 +30,6 @@ class App extends Component {
             <Redirect exact from="/" to="/landing" />
           
             <Route exact path="/landing" component={LandingPage} />
-            <Route path ="/adoptionlogin" component={AdoptionLoginPage} />
-            <Route path ="/usersignup" component={CreateNewAccount} />
-            <Route path ="/userquestionnaire" component={QuestionnairePage} />
-            <Route path ="/userreview" component={UserReviewPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.

@@ -24,7 +24,7 @@ class AdoptionLoginPage extends Component {
   } // end login
 
   handleSignUp = () => {
-    this.props.history.push('/usersignup')
+    {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}
   }
 
   handleInputChangeFor = propertyName => (event) => {
