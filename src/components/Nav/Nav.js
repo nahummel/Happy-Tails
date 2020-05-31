@@ -6,8 +6,8 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
+    <Link to="/landing">
+      <h2 className="nav-title">Happy Tails</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">

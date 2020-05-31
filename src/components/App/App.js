@@ -3,28 +3,31 @@ import {HashRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
+import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRouteRescue from '../ProtectedRouteRescue/ProtectedRouteRescue';
 
-import LandingPage from '../LandingPage/LandingPage'
+import LandingPage from '../LandingPage/LandingPage';
 import UserPage from '../UserPage/UserPage';
+import RescuePage from '../RescuePage/RescuePage';
 
 import './App.css';
-import QuestionnairePage from '../UserQuestionnairePage/UserQuestionnairePage';
-import AdoptionLoginPage from '../AdoptionLoginPage/AdoptionLoginPage';
-import CreateNewAccount from '../CreateNewAccountPage/CreateNewAccount';
-import UserReviewPage from '../UserReviewPage/UserReviewPage';
+
+
 
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_RESCUE'})
   }
 
   render() {
     return (
       <Router>
         <div>
+          <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/landing" />
@@ -35,6 +38,7 @@ class App extends Component {
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute exact path="/home" component={UserPage} />
+            <ProtectedRouteRescue exact path="/rescuehome" component={RescuePage} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

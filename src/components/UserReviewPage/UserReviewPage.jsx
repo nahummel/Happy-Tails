@@ -45,6 +45,8 @@ class UserReviewPage extends Component {
                     health: this.props.userQuest.health,
                 },
             });
+            // this.props.dispatch({ type: 'RESET_ANWSERS' });
+            this.props.dispatch({ type: 'RESET_INFO' });
         } else {
             this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
         }
@@ -55,6 +57,8 @@ class UserReviewPage extends Component {
             [propertyName]: event.target.value,
         });
     }
+
+    
 
     render() {
         return (
