@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class AdoptionLoginPage extends Component {
   state = {
     username: '',
@@ -33,6 +34,19 @@ class AdoptionLoginPage extends Component {
     });
   }
 
+  renderLoginTitle = () => {
+  
+      if (this.props.location.pathname === '/rescue-home') {
+       return(
+         'Rescue Login'
+       )
+      }else {
+        return (
+          'Adoption Login'
+        )
+      }
+  }
+
   render() {
     return (
       <div>
@@ -45,7 +59,7 @@ class AdoptionLoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Adoption Login</h1>
+          <h1>{this.renderLoginTitle()}</h1>
           <div>
             <label htmlFor="username">
               Username:
@@ -75,6 +89,7 @@ class AdoptionLoginPage extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(AdoptionLoginPage);

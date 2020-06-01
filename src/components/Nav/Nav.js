@@ -6,7 +6,7 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/landing">
+    <Link to={!props.user.is_user ? '/rescue-home' : '/home'}>
       <h2 className="nav-title">Happy Tails</h2>
     </Link>
     <div className="nav-right">
