@@ -22,26 +22,8 @@ class UserReviewPage extends Component {
             this.props.dispatch({
                 type: 'REGISTER',
                 payload: {
-                    username: this.props.userInfo.username,
-                    password: this.props.userInfo.password,
-                    name: this.props.userInfo.name,
-                    street: this.props.userInfo.street,
-                    city: this.props.userInfo.city,
-                    state: this.props.userInfo.state,
-                    zipcode: this.props.userInfo.zipcode,
-                    phone: this.props.userInfo.phone,
-                    email: this.props.userInfo.email,
-                    size: this.props.userQuest.size,
-                    age: this.props.userQuest.age,
-                    sex: this.props.userQuest.sex,
-                    rent: this.props.userQuest.rent,
-                    dogs: this.props.userQuest.dogs,
-                    cats: this.props.userQuest.cats,
-                    kids: this.props.userQuest.kids,
-                    active: this.props.userQuest.active,
-                    groom: this.props.userQuest.groom,
-                    train: this.props.userQuest.train,
-                    health: this.props.userQuest.health,
+                    ...this.props.userInfo,
+                    ...this.props.userQuest
                 },
             });
             // this.props.dispatch({ type: 'RESET_ANWSERS' });

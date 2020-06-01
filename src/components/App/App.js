@@ -22,7 +22,6 @@ import { UserType } from '../../constants';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
-    this.props.dispatch({type: 'FETCH_RESCUE'})
   }
 
   render() {

@@ -12,7 +12,7 @@ class CreateNewAccountPage extends Component {
     zipcode:'',
     phone:'',
     email:'',
-    user: true,
+    is_user: true,
   };
 
 
@@ -30,16 +30,16 @@ class CreateNewAccountPage extends Component {
           zipcode: this.state.zipcode,
           phone: this.state.phone,
           email: this.state.email,
-          user: this.state.user
+          is_user: this.state.is_user
         },
       });
-    this.props.onClick(this.state.user)
+    this.props.onClick(this.state.is_user)
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {
     if (property === "user") {
       this.setState({
-        user: !this.state.user,
+        is_user: !this.state.is_user,
       });
     } else {
       this.setState({
@@ -111,19 +111,19 @@ class CreateNewAccountPage extends Component {
             <h4>Are you a user or a rescue?</h4>
             <div>
               <label>
-                <input type="radio" id="yesUser" checked={this.state.user} onChange={this.handleInputChangeFor('user')}></input>
+                <input type="radio" id="yesUser" checked={this.state.is_user} onChange={this.handleInputChangeFor('user')}></input>
                     User
                 </label>
             </div>
             <div>
               <label>
-                <input type="radio" id="noUser" checked={!this.state.user} onChange={this.handleInputChangeFor('user')}></input>
+                <input type="radio" id="noUser" checked={!this.state.is_user} onChange={this.handleInputChangeFor('user')}></input>
                   Rescue
               </label>
             </div>
           </div>
           <div>
-            <button onClick={this.handleNext}>{this.state.user ? "Next" : "Register"}</button>
+            <button onClick={this.handleNext}>{this.state.is_user ? "Next" : "Register"}</button>
           </div>
           <div>
             <button onClick={this.handleBack}>Back to Login</button>
