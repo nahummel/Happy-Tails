@@ -12,21 +12,16 @@ class UserPage extends Component {
     this.props.dispatch({type: "FETCH_DOGS"})
   }
 
-  handleClick = () => {
-    console.log(this.props.dogs)
-  }
-
   render(){
     return (
        <>
         <h1>My Matches</h1>
-        <button onClick={this.handleClick}>check</button>
         <div>
-          {/* {this.props.dogs.map((dog) => {
+          {this.props.dogs.map((dog) => {
             return(
               <Dog dog={dog} key={dog.id}/>
             )
-          })} */}
+          })}
         </div>
 
       </>
