@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import AdoptionLoginPage from '../AdoptionLoginPage/AdoptionLoginPage';
 import RegisterNewAccount from '../RegisterNewAccount/RegisterNewAccount';
+import { UserType } from '../../constants';
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -21,24 +22,34 @@ const ProtectedRoute = (props) => {
     // Alias prop 'component' as 'ComponentToProtect'
     component: ComponentToProtect,
     user,
+    rescue,
     loginMode,
+    allowedRole,
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
-  if(user.id) {
+  if ((allowedRole === UserType.USER && user.id) || (allowedRole === UserType.RESCUE && rescue.id)) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
   } else if (loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
-    ComponentToShow = AdoptionLoginPage;
+    if (allowedRole === UserType.USER) {
+      ComponentToShow = AdoptionLoginPage;
+    } else {
+      // rescue login
+    }
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
-    ComponentToShow = RegisterNewAccount;
+    if (allowedRole === UserType.USER) {
+      ComponentToShow = RegisterNewAccount;
+    } else {
+      // register rescue acct
+    }
   }
 
   // We return a Route component that gets added to our list of routes
@@ -59,6 +70,7 @@ const ProtectedRoute = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    rescue: state.rescue,
     loginMode: state.loginMode,
   }
 }
