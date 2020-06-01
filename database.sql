@@ -4,28 +4,14 @@ CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
-    "f_name" VARCHAR (20),
-    "l_name" VARCHAR (20),
+    "name" VARCHAR (20),
     "street" VARCHAR (255),
     "city" VARCHAR (50),
     "state" VARCHAR (25),
     "zipcode" INT,
     "phone" INT,
     "email" VARCHAR (255),
-    "quest_id" INT 
-);
-
-CREATE TABLE "rescues" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL,
-    "name" VARCHAR (50),
-    "street" VARCHAR (255),
-    "city" VARCHAR (50),
-    "state" VARCHAR (25),
-    "zipcode" INT,
-    "phone" INT,
-    "email" VARCHAR (255)
+    "user" BOOLEAN
 );
 
 CREATE TABLE "dogs" (

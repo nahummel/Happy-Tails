@@ -30,26 +30,18 @@ const ProtectedRoute = (props) => {
 
   let ComponentToShow;
 
-  if ((allowedRole === UserType.USER && user.id) || (allowedRole === UserType.RESCUE && rescue.id)) {
+  if ((allowedRole === UserType.USER && user.user) || (allowedRole === UserType.RESCUE && !user.user)) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
   } else if (loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
-    if (allowedRole === UserType.USER) {
-      ComponentToShow = AdoptionLoginPage;
-    } else {
-      // rescue login
-    }
+    ComponentToShow = AdoptionLoginPage;
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
-    if (allowedRole === UserType.USER) {
-      ComponentToShow = RegisterNewAccount;
-    } else {
-      // register rescue acct
-    }
+    ComponentToShow = RegisterNewAccount;
   }
 
   // We return a Route component that gets added to our list of routes
@@ -70,7 +62,6 @@ const ProtectedRoute = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    rescue: state.rescue,
     loginMode: state.loginMode,
   }
 }

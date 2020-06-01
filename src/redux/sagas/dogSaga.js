@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchDogs() {
     try {
-        const response = yield axios.get('/api/dogs');
+        const response = yield axios.get('/api/dog');
         console.log('in fetchDogs', response.data);
         yield put({
             type: 'SET_DOGS',

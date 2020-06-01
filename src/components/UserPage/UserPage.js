@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
+import Dog from '../Dog/Dog'
+
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
@@ -10,16 +12,23 @@ class UserPage extends Component {
     this.props.dispatch({type: "FETCH_DOGS"})
   }
 
+  handleClick = () => {
+    console.log(this.props.dogs)
+  }
+
   render(){
     return (
        <>
         <h1>My Matches</h1>
+        <button onClick={this.handleClick}>check</button>
+        <div>
+          {/* {this.props.dogs.map((dog) => {
+            return(
+              <Dog dog={dog} key={dog.id}/>
+            )
+          })} */}
+        </div>
 
-
-        {/* <h1 id="welcome">
-          Welcome, { props.user.username }!
-        </h1>
-        <p>Your ID is: {props.user.id}</p> */}
       </>
     )
   }
@@ -30,6 +39,7 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
+  dogs: state.dogs
 });
 
 // this allows us to use <App /> in index.js

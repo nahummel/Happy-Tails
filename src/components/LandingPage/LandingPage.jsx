@@ -6,15 +6,16 @@ class LandingPage extends Component {
         this.props.history.push('/home')
     }
 
+    handleRescue = () => {
+        this.props.history.push('/rescue-home')
+    }
+
     render() {
         return(
             <>
-                <header>
-                    <h1>Happy Tails</h1>
-                </header>
                 <div className='landingPageButtons'>
                     <button onClick={this.handleAdopt}>I am looking to Adopt</button>
-                    <button>I am a Rescue or Shelter</button>
+                    <button onClick={this.handleRescue}>I am a Rescue or Shelter</button>
                 </div>
                 <div>
                     <h3>Happy Tails Mission</h3>

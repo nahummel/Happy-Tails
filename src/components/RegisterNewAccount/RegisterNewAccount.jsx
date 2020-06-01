@@ -8,8 +8,13 @@ class RegisterNew extends Component {
         componentToShow: 'userInfo'
     }
 
-    showUserQuestionnaire = () => {
-        this.setState({componentToShow: "userQuestionnare"})
+    handleCreateNewAccountClick = (user) => {
+        if (user) {
+            this.setState({ componentToShow: "userQuestionnare" })
+        } else {
+            // register the rescue and go to rescue page
+            alert("do the rescue stuff")
+        }
     }
 
     showReview = () => {
@@ -19,7 +24,7 @@ class RegisterNew extends Component {
     render() {
         return (
             <div>
-                {this.state.componentToShow === "userInfo" && <CreateNewAccount onClick={this.showUserQuestionnaire}/>}
+                {this.state.componentToShow === "userInfo" && <CreateNewAccount onClick={this.handleCreateNewAccountClick}/>}
                 {this.state.componentToShow === "userQuestionnare" && <UserQuestionnaire onClick={this.showReview}/>}
                 {this.state.componentToShow === "userReview" && <UserReview />}
             </div>

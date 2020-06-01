@@ -7,11 +7,10 @@ const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
-const rescuePassport = require('./strategies/rescue.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const rescueRouter = require('./routes/rescue.router');
+const dogRouter = require('./routes/dog.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -23,12 +22,10 @@ app.use(sessionMiddleware);
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(rescuePassport.initialize());
-app.use(rescuePassport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/rescue', rescueRouter);
+app.use('/api/dog', dogRouter);
 
 // Serve static files
 app.use(express.static('build'));

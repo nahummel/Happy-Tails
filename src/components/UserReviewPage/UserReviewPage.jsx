@@ -24,8 +24,7 @@ class UserReviewPage extends Component {
                 payload: {
                     username: this.props.userInfo.username,
                     password: this.props.userInfo.password,
-                    f_name: this.props.userInfo.f_name,
-                    l_name: this.props.userInfo.l_name,
+                    name: this.props.userInfo.name,
                     street: this.props.userInfo.street,
                     city: this.props.userInfo.city,
                     state: this.props.userInfo.state,
@@ -69,7 +68,7 @@ class UserReviewPage extends Component {
                 <div>
                     <h2>Personal Information</h2>
                     <h4>Name:</h4>
-                    <p>{this.props.userInfo.f_name} {this.props.userInfo.l_name}</p>
+                    <p>{this.props.userInfo.name}</p>
                     <h4>Address:</h4>
                     <p>{this.props.userInfo.street}</p>
                     <p>{this.props.userInfo.city}, {this.props.userInfo.state}</p>

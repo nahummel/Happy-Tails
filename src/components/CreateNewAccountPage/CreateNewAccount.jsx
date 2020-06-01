@@ -5,14 +5,14 @@ class CreateNewAccountPage extends Component {
   state = {
     username: '',
     password: '',
-    f_name:'',
-    l_name:'',
+    name:'',
     street:'',
     city:'',
     state:'',
     zipcode:'',
     phone:'',
     email:'',
+    user: true,
   };
 
 
@@ -23,23 +23,30 @@ class CreateNewAccountPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
-          f_name: this.state.f_name,
-          l_name: this.state.l_name,
+          name: this.state.name,
           street: this.state.street,
           city: this.state.city,
           state: this.state.state,
           zipcode: this.state.zipcode,
           phone: this.state.phone,
-          email: this.state.email
+          email: this.state.email,
+          user: this.state.user
         },
       });
-    this.props.onClick()
+    this.props.onClick(this.state.user)
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {
-    this.setState({
-      [property]: event.target.value,
-    });
+    if (property === "user") {
+      this.setState({
+        user: !this.state.user,
+      });
+    } else {
+      this.setState({
+        [property]: event.target.value,
+      });
+    }
+
   }
 
   handleBack = () => {
@@ -76,8 +83,7 @@ class CreateNewAccountPage extends Component {
           <div>
             <label htmlFor="name">
               Name:
-              <input type="text" placeholder="first" value={this.state.f_name} onChange={this.handleInputChangeFor('f_name')}/>
-              <input type="text" placeholder="last" value={this.state.l_name} onChange={this.handleInputChangeFor('l_name')}/>
+              <input type="text" placeholder="full name" value={this.state.name} onChange={this.handleInputChangeFor('name')}/>
             </label>
           </div>
           <div>
@@ -102,7 +108,22 @@ class CreateNewAccountPage extends Component {
             </label>
           </div>
           <div>
-            <button onClick={this.handleNext}>Next</button>
+            <h4>Are you a user or a rescue?</h4>
+            <div>
+              <label>
+                <input type="radio" id="yesUser" checked={this.state.user} onChange={this.handleInputChangeFor('user')}></input>
+                    User
+                </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" id="noUser" checked={!this.state.user} onChange={this.handleInputChangeFor('user')}></input>
+                  Rescue
+              </label>
+            </div>
+          </div>
+          <div>
+            <button onClick={this.handleNext}>{this.state.user ? "Next" : "Register"}</button>
           </div>
           <div>
             <button onClick={this.handleBack}>Back to Login</button>

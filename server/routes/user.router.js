@@ -19,13 +19,23 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = 'WITH new_user AS (INSERT INTO "users" (username, password, f_name, l_name, street, city, state, zipcode, phone, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id) INSERT INTO "questionnaires" (size, age_range, sex, rent_breed, other_dogs, cats, kids, grooming, active, training, health, user_id) VALUES ($11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, (SELECT id FROM new_user));';
-  pool.query(queryText, [username, password, req.body.f_name, req.body.l_name, req.body.street, req.body.city, req.body.state, req.body.zipcode, req.body.phone, req.body.email, req.body.size, req.body.age, req.body.sex, req.body.rent, req.body.dogs, req.body.cats, req.body.kids, req.body.groom, req.body.active, req.body.train, req.body.health])
-    .then(() => res.sendStatus(201))
-    .catch((error) => {
+  if (req.body.user) {
+    const queryText = 'WITH new_user AS (INSERT INTO "users" (username, password, name, street, city, state, zipcode, phone, email, is_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id) INSERT INTO "questionnaires" (size, age_range, sex, rent_breed, other_dogs, cats, kids, grooming, active, training, health, user_id) VALUES ($11, $12, $13, $14, $15, $16, $17, $18, $19, $20, (SELECT id FROM new_user));';
+    pool.query(queryText, [username, password, req.body.name, req.body.street, req.body.city, req.body.state, req.body.zipcode, req.body.phone, req.body.email, req.body.user, req.body.size, req.body.age, req.body.sex, req.body.rent, req.body.dogs, req.body.cats, req.body.kids, req.body.groom, req.body.active, req.body.train, req.body.health])
+      .then(() => res.sendStatus(201))
+      .catch((error) => {
         console.log(error)
         // res.sendStatus(500);
       });
+  } else {
+    const queryText = 'INSERT INTO "users" (username, password, name, street, city, state, zipcode, phone, email, is_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+    pool.query(queryText, [username, password, req.body.name, req.body.street, req.body.city, req.body.state, req.body.zipcode, req.body.phone, req.body.email, req.body.user])
+      .then(() => res.sendStatus(201))
+      .catch((error) => {
+        console.log(error)
+        // res.sendStatus(500);
+      });
+  }
 });
 
 // Handles login form authenticate/login POST
