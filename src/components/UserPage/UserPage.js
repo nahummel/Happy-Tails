@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import { Grid } from '@material-ui/core'
 
 import Dog from '../Dog/Dog'
 
@@ -17,13 +17,14 @@ class UserPage extends Component {
        <>
         <h1>My Matches</h1>
         <div>
+          <Grid container spacing={4}>
           {this.props.dogs.map((dog) => {
             return(
-              <Dog dog={dog} key={dog.id}/>
+              <Grid item xs={12} md={4} lg={2} xl={2}><Dog dog={dog} key={dog.id} history={this.props.history} /></Grid>
             )
           })}
+          </Grid>
         </div>
-
       </>
     )
   }
