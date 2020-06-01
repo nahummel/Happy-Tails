@@ -41,7 +41,7 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute exact path="/home" component={UserPage} allowedRole={UserType.USER} />
             <ProtectedRoute exact path="/rescue-home" component={RescuePage} allowedRole={UserType.RESCUE} />
-            <Route path="/about-me" component={AboutMe} />
+            <ProtectedRoute path="/about-me" component={AboutMe} allowedRole={UserType.USER}/>
             
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

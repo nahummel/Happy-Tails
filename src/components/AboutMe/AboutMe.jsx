@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class AboutMe extends Component {
     handleClick = () => {
@@ -8,11 +9,27 @@ class AboutMe extends Component {
     render() {
         return (
             <>
-                <p>HI</p>
+                <img src={this.props.details.image} alt="dog photo" height="500px"></img>
+                <div>
+                    <h1>{this.props.details.name}</h1>
+                    <h2>Breed: {this.props.details.breed}</h2>
+                    <h2>Gender: {this.props.details.sex}</h2>
+                    <h2>Age: {this.props.details.age}</h2>
+                </div>
+                <div>
+                    <h4>Information about {this.props.details.name}</h4>
+                    <p>{this.props.details.description}</p>
+                </div>
                 <button onClick={this.handleClick}>Back</button>
             </>
         )
     }
 }
+const mapStateToProps = state => ({
+    details: state.aboutMe,
+    dispatch: state.dispatch
+});
 
-export default (AboutMe);
+// this allows us to use <App /> in index.js
+export default connect(mapStateToProps)(AboutMe);
+

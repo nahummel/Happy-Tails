@@ -21,7 +21,6 @@ CREATE TABLE "dogs" (
     "sex" VARCHAR (6),
     "age" INT,
     "rescue_id" INT,
-    "quest_id" INT
 );
 
 CREATE TABLE "questionnaires" (
