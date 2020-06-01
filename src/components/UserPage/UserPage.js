@@ -20,7 +20,7 @@ class UserPage extends Component {
           <Grid container spacing={4}>
           {this.props.dogs.map((dog) => {
             return(
-              <Grid item xs={12} md={4} lg={2} xl={2}><Dog dog={dog} key={dog.id} history={this.props.history} /></Grid>
+              <Grid item xs={12} md={4} lg={2} xl={2}><Dog dog={dog} key={dog.id} history={this.props.history} dispatch={this.props.dispatch} /></Grid>
             )
           })}
           </Grid>
@@ -35,7 +35,8 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
-  dogs: state.dogs
+  dogs: state.dogs,
+  dispatch: state.dispatch
 });
 
 // this allows us to use <App /> in index.js
