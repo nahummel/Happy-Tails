@@ -10,23 +10,33 @@ class RegisterNew extends Component {
 
     handleCreateNewAccountClick = (user) => {
         if (user) {
-            this.setState({ componentToShow: "userQuestionnare" })
+            this.setState({ componentToShow: "userQuestionnaire" })
         } else {
             // register the rescue and go to rescue page
             alert("do the rescue stuff")
         }
     }
 
-    showReview = () => {
-        this.setState({componentToShow: 'userReview'})
+    handleShowComponent = (componentToShow) => {
+        this.setState({ componentToShow })
     }
 
     render() {
         return (
             <div>
-                {this.state.componentToShow === "userInfo" && <CreateNewAccount onClick={this.handleCreateNewAccountClick}/>}
-                {this.state.componentToShow === "userQuestionnare" && <UserQuestionnaire onClick={this.showReview}/>}
-                {this.state.componentToShow === "userReview" && <UserReview />}
+                {this.state.componentToShow === "userInfo" && 
+                    <CreateNewAccount 
+                        onNext={this.handleCreateNewAccountClick} 
+                    />}
+                {this.state.componentToShow === "userQuestionnaire" && 
+                    <UserQuestionnaire 
+                        onNext={() => this.handleShowComponent("userReview")}
+                        onBack={() => this.handleShowComponent("userInfo")} 
+                    />}
+                {this.state.componentToShow === "userReview" && <UserReview 
+                        onEditInfo={() => this.handleShowComponent("userInfo")}
+                        onEditQuiz={() => this.handleShowComponent("userQuestionnaire")}
+                    />}
             </div>
         )
     }

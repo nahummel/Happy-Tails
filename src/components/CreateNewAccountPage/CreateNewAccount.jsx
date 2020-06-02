@@ -3,23 +3,13 @@ import {connect} from 'react-redux';
 
 class CreateNewAccountPage extends Component {
   state = {
-    username: '',
-    password: '',
-    name:'',
-    street:'',
-    city:'',
-    state:'',
-    zipcode:'',
-    phone:'',
-    email:'',
-    is_user: true,
+    ...this.props.userInfo
   };
-
 
   handleNext = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'STORE_INFO', payload: {...this.state}});
-    this.props.onClick(this.state.is_user);
+    this.props.onNext(this.state.is_user);
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {
@@ -36,7 +26,7 @@ class CreateNewAccountPage extends Component {
   }
 
   handleBack = () => {
-    this.props.history.push('/adoptionlogin')
+    this.props.history.push('/home')
   }
 
   render() {
@@ -111,19 +101,29 @@ class CreateNewAccountPage extends Component {
           <div>
             <button onClick={this.handleNext}>{this.state.is_user ? "Next" : "Register"}</button>
           </div>
-          <div>
+          {/* <div>
             <button onClick={this.handleBack}>Back to Login</button>
-          </div>
+          </div> */}
         </form>
       </div>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
+  userInfo: {
+    username: '',
+    password: '',
+    name: '',
+    street: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    phone: '',
+    email: '',
+    is_user: true,
+    ...state.userInfo, // override default with any existing user values
+  },
   errors: state.errors,
 });
 

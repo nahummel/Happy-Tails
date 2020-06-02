@@ -39,7 +39,13 @@ class UserReviewPage extends Component {
         });
     }
 
+    handleQuizEdit = () => {
+        this.props.onEditQuiz()
+    }
     
+    handleInfoEdit = () => {
+        this.props.onEditInfo()
+    }
 
     render() {
         return (
@@ -59,7 +65,7 @@ class UserReviewPage extends Component {
                     <p>{this.props.userInfo.phone}</p>
                     <h4>E-mail:</h4>
                     <p>{this.props.userInfo.email}</p>
-                    <button>Edit</button>
+                    <button onClick={this.handleInfoEdit}>Edit</button>
                 </div>
                 <div>
                     <h2>Matching Questionnaire</h2>
@@ -97,7 +103,7 @@ class UserReviewPage extends Component {
                     {this.conditionals(this.props.userQuest.train)}
                     <h4>Are you willing to adopt a dog that has health problems?</h4>
                     {this.conditionals(this.props.userQuest.health)}
-                    <button>Edit</button>
+                    <button onClick={this.handleQuizEdit}>Edit</button>
                 </div>
                 <div>
                     <button onClick={this.registerUser}>Register</button>

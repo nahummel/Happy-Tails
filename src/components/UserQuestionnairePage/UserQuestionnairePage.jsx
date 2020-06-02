@@ -3,17 +3,7 @@ import { connect } from 'react-redux';
 
 class UserQuestionnairePage extends Component {
     state = {
-        size: [],
-        age: [],
-        sex: [],
-        rent: false,
-        dogs: false,
-        cats: false,
-        kids: false,
-        active: false,
-        groom: false,
-        train: false,
-        health: false,
+        ...this.props.userQuest
     }
 
     handleChecked = (event, property) => {
@@ -146,27 +136,15 @@ class UserQuestionnairePage extends Component {
     }
 
     handleBack = () => {
-        this.props.history.push('/usersignup')
+        this.props.onBack()
     }
 
     handleNext = () => {
         this.props.dispatch({
             type: 'STORE_ANWSERS',
-            payload: {
-                size: this.state.size,
-                age: this.state.age,
-                sex: this.state.sex,
-                rent: this.state.rent,
-                dogs: this.state.dogs,
-                cats: this.state.cats,
-                kids: this.state.kids,
-                active: this.state.active,
-                groom: this.state.groom,
-                train: this.state.train,
-                health: this.state.health,
-            },
+            payload: { ...this.state }
         });
-        this.props.onClick()
+        this.props.onNext()
     }
 
     render() {
@@ -184,25 +162,25 @@ class UserQuestionnairePage extends Component {
                         <h4>What size of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="tiny" onChange={(event) => this.handleChecked(event, 'size')}></input>
+                                <input type="checkbox" id="tiny" checked={this.state.size[0] === 'tiny' || this.state.size[1] === 'tiny' || this.state.size[2] === 'tiny' || this.state.size[3] === 'tiny'} onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Tiny
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="small" onChange={(event) => this.handleChecked(event, 'size')}></input>
+                                <input type="checkbox" id="small" checked={this.state.size[0] === 'small' || this.state.size[1] === 'small' || this.state.size[2] === 'small' || this.state.size[3] === 'small'} onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Small
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="medium" onChange={(event) => this.handleChecked(event, 'size')}></input>
+                                <input type="checkbox" id="medium" checked={this.state.size[0] === 'medium' || this.state.size[1] === 'medium' || this.state.size[2] === 'medium' || this.state.size[3] === 'medium'} onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Medium
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="large" onChange={(event) => this.handleChecked(event, 'size')}></input>
+                                <input type="checkbox" id="large" checked={this.state.size[0] === 'large' || this.state.size[1] === 'large' || this.state.size[2] === 'large' || this.state.size[3] === 'large'} onChange={(event) => this.handleChecked(event, 'size')}></input>
                                 Large
                             </label>
                         </div>
@@ -211,19 +189,19 @@ class UserQuestionnairePage extends Component {
                         <h4>What age of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="young" onChange={(event) => this.handleChecked(event, 'age')}></input>
+                                <input type="checkbox" id="young" checked={this.state.age[0] === 'young' || this.state.age[1] === 'young' || this.state.age[2] === 'young'} onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Young
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="adult" onChange={(event) => this.handleChecked(event, 'age')}></input>
+                                <input type="checkbox" id="adult" checked={this.state.age[0] === 'adult' || this.state.age[1] === 'adult' || this.state.age[2] === 'adult'} onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Adult
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="senior" onChange={(event) => this.handleChecked(event, 'age')}></input>
+                                <input type="checkbox" id="senior" checked={this.state.age[0] === 'senior' || this.state.age[1] === 'senior' || this.state.age[2] === 'senior'} onChange={(event) => this.handleChecked(event, 'age')}></input>
                                 Senior
                             </label>
                         </div>
@@ -232,13 +210,13 @@ class UserQuestionnairePage extends Component {
                         <h4>What gender of dog do you prefer?</h4>
                         <div>
                             <label>
-                                <input type="checkbox" id="male" onChange={(event) => this.handleChecked(event, 'sex')}></input>
+                                <input type="checkbox" id="male" checked={this.state.sex[0] === 'male' || this.state.sex[1] === 'male'} onChange={(event) => this.handleChecked(event, 'sex')}></input>
                                 Male
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" id="female" onChange={(event) => this.handleChecked(event, 'sex')}></input>
+                                <input type="checkbox" id="female" checked={this.state.sex[0] === 'female' || this.state.sex[1] === 'female'} onChange={(event) => this.handleChecked(event, 'sex')}></input>
                                 Female
                             </label>
                         </div>
@@ -372,7 +350,21 @@ class UserQuestionnairePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  errors: state.errors,
+    userQuest: {
+        size: [],
+        age: [],
+        sex: [],
+        rent: false,
+        dogs: false,
+        cats: false,
+        kids: false,
+        active: false,
+        groom: false,
+        train: false,
+        health: false,
+        ...state.userQuest,
+    },
+    errors: state.errors,
 });
 
 export default connect(mapStateToProps)(UserQuestionnairePage);

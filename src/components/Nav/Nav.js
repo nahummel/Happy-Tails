@@ -10,11 +10,8 @@ const Nav = (props) => (
       <h2 className="nav-title">Happy Tails</h2>
     </Link>
     <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
+      <Link className="nav-link" to={!props.user.is_user ? '/rescue-home' : '/home'}>
+        Home
       </Link>
       {props.user.id && (
         <>
