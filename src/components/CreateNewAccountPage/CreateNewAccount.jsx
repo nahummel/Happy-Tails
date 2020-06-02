@@ -18,22 +18,8 @@ class CreateNewAccountPage extends Component {
 
   handleNext = (event) => {
     event.preventDefault();
-      this.props.dispatch({
-        type: 'STORE_INFO',
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-          name: this.state.name,
-          street: this.state.street,
-          city: this.state.city,
-          state: this.state.state,
-          zipcode: this.state.zipcode,
-          phone: this.state.phone,
-          email: this.state.email,
-          is_user: this.state.is_user
-        },
-      });
-    this.props.onClick(this.state.is_user)
+    this.props.dispatch({type: 'STORE_INFO', payload: {...this.state}});
+    this.props.onClick(this.state.is_user);
   } // end registerUser
 
   handleInputChangeFor = property => (event) => {

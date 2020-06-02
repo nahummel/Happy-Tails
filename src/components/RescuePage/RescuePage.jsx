@@ -12,6 +12,10 @@ class RescuePage extends Component {
     this.props.dispatch({ type: "FETCH_DOGS", payload: this.props.user.id })
   }
 
+  handleAddDog = () => {
+    this.props.history.push('/add-dog')
+  }
+
   render() {
     return (
       <>
@@ -25,7 +29,7 @@ class RescuePage extends Component {
             })}
             <Card>
               <CardContent className="cardContent">
-                <Grid item xs={12} md={4} lg={2} xl={2}><button>Add Dog</button></Grid>
+                <Grid item xs={12} md={4} lg={2} xl={2}><button onClick={this.handleAddDog}>Add Dog</button></Grid>
               </CardContent>
             </Card>
           </Grid>

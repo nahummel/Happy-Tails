@@ -25,8 +25,23 @@ function* fetchDogs(action) {
     }
 }
 
-function* userSaga() {
-    yield takeLatest('FETCH_DOGS', fetchDogs);
+function* postDog(action) {
+    try {
+        const response = yield axios.get('/api/dog', action.payload);
+        console.log('in fetchDogs', response.data);
+        yield put({
+            type: 'SET_DOGS',
+            payload: response.data
+        }); 
+    } catch (error) {
+        console.log(error);
+        alert('Error posting dog')
+    }
 }
 
-export default userSaga;
+function* dogSaga() {
+    yield takeLatest('FETCH_DOGS', fetchDogs);
+    yield takeLatest('POST_DOG', postDog);
+}
+
+export default dogSaga;
