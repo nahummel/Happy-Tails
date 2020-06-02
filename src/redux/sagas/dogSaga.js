@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, actionChannel } from 'redux-saga/effects';
+import { put, takeLatest} from 'redux-saga/effects';
 
 function* fetchDogs(action) {
     try {
@@ -27,12 +27,7 @@ function* fetchDogs(action) {
 
 function* postDog(action) {
     try {
-        const response = yield axios.get('/api/dog', action.payload);
-        console.log('in fetchDogs', response.data);
-        yield put({
-            type: 'SET_DOGS',
-            payload: response.data
-        }); 
+        const response = yield axios.post('/api/dog', action.payload);
     } catch (error) {
         console.log(error);
         alert('Error posting dog')

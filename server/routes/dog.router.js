@@ -22,11 +22,16 @@ router.get('/:id', (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
-
+    console.log('in post')
+    const queryText = `WITH new_dog AS (INSERT INTO "dogs" (name, image, description, breed, sex, age, rescue_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id) INSERT INTO "questionnaires" (size, age_range, sex, rent_breed, other_dogs, cats, kids, grooming, active, training, health, dog_id) VALUES ($8, $9, $5, $10, $11, $12, $13, $14, $15, $16, $17, (SELECT id FROM new_dog));`
+    const values = [req.body.name, req.body.image, req.body.description, req.body.breed, req.body.sex, req.body.age, req.body.rescue_id, req.body.size, req.body.age_range, req.body.rent, req.body.dogs, req.body.cats, req.body.kids, req.body.groom, req.body.active, req.body.train, req.body.health]
+    pool.query(queryText, values)
+    .then(() => res.sendStatus(201))
+    .catch((error) => {
+        console.log(error)
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;
