@@ -34,4 +34,15 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req,res) => {
+    console.log('in delete')
+    const queryText = `DELETE FROM "dogs" WHERE "id" = $1;`
+    pool.query(queryText, [req.params.id])
+    .then(() => res.sendStatus(200))
+    .catch((error) => {
+        console.log(error)
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;

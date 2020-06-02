@@ -28,15 +28,35 @@ function* fetchDogs(action) {
 function* postDog(action) {
     try {
         const response = yield axios.post('/api/dog', action.payload);
+        yield put({
+            type: 'FETCH_DOGS',
+            payload: action.payload.rescue_id
+        });
     } catch (error) {
         console.log(error);
         alert('Error posting dog')
     }
 }
 
+function* deleteDog(action) {
+    try {
+        const id = action.payload[0]
+        const rescue_id = action.payload[1]
+        const response = yield axios.delete(`/api/dog/${id}`);
+        yield put({
+            type: 'FETCH_DOGS',
+            payload: rescue_id
+        });
+    } catch (error) {
+        console.log(error);
+        alert('Error removing dog')
+    }
+}
+
 function* dogSaga() {
     yield takeLatest('FETCH_DOGS', fetchDogs);
     yield takeLatest('POST_DOG', postDog);
+    yield takeLatest('DELETE_DOG', deleteDog);
 }
 
 export default dogSaga;

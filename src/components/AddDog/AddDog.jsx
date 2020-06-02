@@ -35,7 +35,7 @@ class AddDog extends Component {
                 this.setState({
                     age_range: 'adult'
                 })
-            } else if (event.target.value > 7) {
+            } else if (event.target.value > 6) {
                 this.setState({
                     age_range: 'senior'
                 })

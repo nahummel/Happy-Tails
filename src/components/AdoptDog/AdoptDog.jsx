@@ -10,6 +10,11 @@ class AdoptDog extends Component {
         this.props.history.push('/dog-profile')
     }
 
+    handleDelete = () => {
+        console.log(this.props.dog.id)
+        this.props.dispatch({type: 'DELETE_DOG', payload: [this.props.dog.id, this.props.dog.rescue_id]});
+    }
+
     render() {
         return (
             <>
@@ -18,7 +23,7 @@ class AdoptDog extends Component {
                         <img src={this.props.dog.image} alt="dog photo" height="200px"></img>
                         <h2>{this.props.dog.name}</h2>
                         <button onClick={this.handleClick}>Profile</button>
-                        <button>Delete</button>
+                        <button onClick={this.handleDelete}>Delete</button>
                     </CardContent>
                 </Card>
             </>
