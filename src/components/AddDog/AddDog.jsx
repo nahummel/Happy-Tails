@@ -46,12 +46,12 @@ class AddDog extends Component {
     handleRadio = (event, property) => {
         if (property === 'male') {
             this.setState({
-                sex: 'male'
+                sex: 'Male'
             }
             )
         } else if (property === 'female') {
             this.setState({
-                sex: 'female'
+                sex: 'Female'
             })
         }
         if (property === 'tiny') {
@@ -149,6 +149,7 @@ class AddDog extends Component {
 
     handleAddDog = () => {
         this.props.dispatch({ type: 'POST_DOG', payload: { ...this.state }});
+        this.props.history.push('/rescue-home');
     }
 
     render() {
@@ -178,11 +179,11 @@ class AddDog extends Component {
                     <div>
                         <p>Gender:</p>
                         <label>
-                            <input type="radio" id="male" checked={this.state.sex === 'male'} onChange={(event) => this.handleRadio(event, 'male')}></input>
+                            <input type="radio" id="male" checked={this.state.sex === 'Male'} onChange={(event) => this.handleRadio(event, 'male')}></input>
                             Male
                         </label>
                         <label>
-                            <input type="radio" id="female" checked={this.state.sex === 'female'} onChange={(event) => this.handleRadio(event, 'female')}></input>
+                            <input type="radio" id="female" checked={this.state.sex === 'Female'} onChange={(event) => this.handleRadio(event, 'female')}></input>
                             Female
                         </label>
                     </div>

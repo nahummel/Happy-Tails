@@ -15,7 +15,7 @@ class Dog extends Component {
             <>
                 <Card>
                     <CardContent className="cardContent">
-                        <img src={this.props.dog.image} alt="dog photo" height="200px"></img>
+                        <img src={this.props.dog.image} alt="dog photo" height="200px" width="150px"></img>
                         <h2>{this.props.dog.name}</h2>
                         <button onClick={this.handleClick}>About Me</button>
                     </CardContent>
