@@ -24,6 +24,10 @@ class AdoptionLoginPage extends Component {
     }
   } // end login
 
+  handleBack = () => {
+    {this.props.history.push('/')}
+  }
+
   handleSignUp = () => {
     {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}
   }
@@ -78,6 +82,9 @@ class AdoptionLoginPage extends Component {
           <div>
             <button onClick={this.handleSignUp}>Sign-Up</button>
           </div>
+          <div>
+            <button onClick={this.handleBack}>Back</button>
+          </div>
         </form>
       </div>
     );
@@ -89,7 +96,7 @@ class AdoptionLoginPage extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
-  user: state.user
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(AdoptionLoginPage);
