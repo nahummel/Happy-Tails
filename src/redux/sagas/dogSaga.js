@@ -1,14 +1,24 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, actionChannel } from 'redux-saga/effects';
 
-function* fetchDogs() {
+function* fetchDogs(action) {
     try {
-        const response = yield axios.get('/api/dog');
-        console.log('in fetchDogs', response.data);
-        yield put({
-            type: 'SET_DOGS',
-            payload: response.data
-        });
+        if (action.payload === undefined) {
+            const response = yield axios.get('/api/dog');
+            console.log('in fetchDogs', response.data);
+            yield put({
+                type: 'SET_DOGS',
+                payload: response.data
+            });
+        } else {
+            const id = action.payload
+            const response = yield axios.get(`/api/dog/${id}`);
+            console.log('in fetchDogs', response.data);
+            yield put({
+                type: 'SET_DOGS',
+                payload: response.data
+            });
+        }
     } catch (error) {
         console.log(error);
         alert('Error getting Dogs')
