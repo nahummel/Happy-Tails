@@ -6,6 +6,10 @@ class DogProfile extends Component {
         this.props.history.push('/rescue-home');
     }
 
+    handleEdit = () => {
+        this.props.history.push('/edit-dog')
+    }
+
     render() {
         return (
             <>
@@ -18,7 +22,7 @@ class DogProfile extends Component {
                     <h2>Description: </h2>
                     <p>{this.props.details.description}</p>
                 </div>
-
+                <button onClick={this.handleEdit}>Edit</button>
                 <button onClick={this.handleClick}>Back</button>
             </>
         )

@@ -20,6 +20,7 @@ import { UserType } from '../../constants';
 import AddDog from '../AddDog/AddDog';
 import DogProfile from '../DogProfile/DogProfile';
 import UserProfile from '../UserProfile/UserProfile';
+import EditDogProfile from '../EditDogProfile/EditDogProfile';
 
 
 
@@ -48,6 +49,7 @@ class App extends Component {
             <ProtectedRoute path="/user=profile" component={UserProfile} allowedRole={UserType.USER} />
             <ProtectedRoute path="/add-dog" component={AddDog} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/dog-profile" component={DogProfile} allowedRole={UserType.RESCUE} />
+            <ProtectedRoute path="/edit-dog" component={EditDogProfile} allowedRole={UserType.RESCUE} />
             
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 class AdoptDog extends Component {
 
     handleClick = () => {
-        this.props.dispatch({ type: 'DOG_ID', payload: this.props.dog.id });
         this.props.dispatch({ type: 'STORE_DOG', payload: this.props.dog });
         this.props.history.push('/dog-profile')
     }
