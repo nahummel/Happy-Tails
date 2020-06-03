@@ -39,9 +39,9 @@ router.post('/register', (req, res, next) => {
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/quest', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM questionnaires WHERE "user_id" = $1;`;
-  pool.query(queryText, [req.params.id]).then((result) => {
+  pool.query(queryText, [req.user.id]).then((result) => {
     // parse stringified arrays from postgres columns back to json arrays
     const formattedRows = result.rows.map(row => {
       return {

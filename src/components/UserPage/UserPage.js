@@ -9,7 +9,7 @@ import Dog from '../Dog/Dog'
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
   componentDidMount(){
-    this.props.dispatch({ type: "FETCH_USER_QUEST", payload: this.props.user.id })
+    this.props.dispatch({ type: "FETCH_USER_QUEST"})
     this.props.dispatch({type: "FETCH_DOGS"})
   }
 

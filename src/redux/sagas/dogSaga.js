@@ -11,8 +11,7 @@ function* fetchDogs(action) {
                 payload: response.data
             });
         } else {
-            const id = action.payload
-            const response = yield axios.get(`/api/dog/${id}`);
+            const response = yield axios.get(`/api/dog/rescue`);
             console.log('in fetchDogs', response.data);
             yield put({
                 type: 'SET_DOGS',

@@ -24,10 +24,9 @@ function* fetchUser() {
   }
 }
 
-function* fetchUserQuest(action) {
+function* fetchUserQuest() {
   try {
-    const id = action.payload
-    const response = yield axios.get(`/api/user/${id}`);
+    const response = yield axios.get(`/api/user/quest`);
     console.log('in fetchUserQuest', response.data);
     yield put({
       type: 'STORE_ANWSERS',
