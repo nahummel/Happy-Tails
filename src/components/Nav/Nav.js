@@ -15,7 +15,7 @@ const Nav = (props) => (
       </Link>
       {props.user.id && (
         <>
-          <Link className="nav-link" to="/user-profile">
+          <Link className="nav-link" to={!props.user.is_user ? '/rescue-profile' : '/user-profile'}>
             Profile
           </Link>
           <LogOutButton className="nav-link"/>
