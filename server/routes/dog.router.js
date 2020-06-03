@@ -56,7 +56,7 @@ router.delete('/:id', (req, res) => {
         });
 });
 
-router.put('/:id', (req,res) => {
+router.put('/info/:id', (req,res) => {
     console.log('in put')
     console.log(req.body)
     const queryText = `UPDATE "dogs" SET "name"=$1, "image"=$2, "description"=$3, "breed"=$4, "sex"=$5, "age"=$6 WHERE id=$7;`
@@ -67,6 +67,19 @@ router.put('/:id', (req,res) => {
         console.log(error)
         res.sendStatus(500);
     });
+});
+
+router.put('/quest/:id', (req, res) => {
+    console.log('in put')
+    console.log(req.body)
+    const queryText = `UPDATE "questionnaires" SET "size"=$1, "age_range"=$2, "sex"=$3, "rent_breed"=$4, "other_dogs"=$5, "cats"=$6, "kids"=$7, "grooming"=$8, "active"=$9, "training"=$10, "health"=$11 WHERE id=$12;`
+    const values = [req.body.size, req.body.age_range, req.body.sex, req.body.rent, req.body.dogs, req.body.cats, req.body.kids, req.body.groom, req.body.active, req.body.train, req.body.health, req.params.id]
+    pool.query(queryText, values)
+        .then(() => res.sendStatus(200))
+        .catch((error) => {
+            console.log(error)
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
