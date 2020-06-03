@@ -12,10 +12,22 @@ class Dog extends Component {
     calculate = () => {
         let totalMatches = 0
         const total = 11
-        if (this.props.userQuest.size == this.props.dog.size) {
+        for (let size of this.props.userQuest.size) {
+            if (size === this.props.dog.size) {
             totalMatches++
+            }
         }
-        if (this.props.userQuest.rent_breed === this.props.dog.rent_breed) {
+        for (let age of this.props.userQuest.age_range) {
+            if (age === this.props.dog.age_range) {
+                totalMatches++
+            }
+        }
+        for (let sex of this.props.userQuest.sex) {
+            if (sex === this.props.dog.sex) {
+                totalMatches++
+            }
+        }
+        if (this.props.userQuest.rent_breed === this.props.dog.rent_breed || !this.props.userQuest.rent_breed) {
             totalMatches++
         }
         if (this.props.userQuest.other_dogs === this.props.dog.other_dogs || !this.props.userQuest.other_dogs) {
@@ -52,7 +64,8 @@ class Dog extends Component {
                 <Card>
                     <CardContent className="cardContent">
                         <img src={this.props.dog.image} alt="dog photo" height="200px" width="150px"></img>
-                        <h2>{this.props.dog.name} {this.calculate()}%</h2>
+                        <h2>{this.props.dog.name}</h2>
+                        <h3>{this.calculate()}% Matching</h3>
                         <button onClick={this.handleClick}>About Me</button>
                     </CardContent>
                 </Card>

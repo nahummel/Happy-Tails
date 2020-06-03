@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM dogs JOIN questionnaires ON dogs.id = dog_id;`;
+    const queryText = `SELECT * FROM dogs JOIN questionnaires ON dogs.id = dog_id ORDER BY "name";`;
     pool.query(queryText).then((result) => {
         res.send(result.rows)
     }).catch((error) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    const queryText = `SELECT * FROM dogs JOIN questionnaires ON dogs.id = dog_id WHERE "rescue_id" = $1;`;
+    const queryText = `SELECT * FROM dogs JOIN questionnaires ON dogs.id = dog_id WHERE "rescue_id" = $1 ORDER BY "name";`;
     pool.query(queryText, [req.params.id]).then((result) => {
         res.send(result.rows)
     }).catch((error) => {

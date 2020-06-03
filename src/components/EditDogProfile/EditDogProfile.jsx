@@ -45,20 +45,20 @@ class EditDogProfile extends Component {
         }
         if (property === 'tiny') {
             this.setState({
-                size: 'tiny'
+                size: 'Tiny'
             }
             )
         } else if (property === 'small') {
             this.setState({
-                size: 'small'
+                size: 'Small'
             })
         } else if (property === 'medium') {
             this.setState({
-                size: 'medium'
+                size: 'Medium'
             })
         } else if (property === 'large') {
             this.setState({
-                size: 'large'
+                size: 'Large'
             })
         }
         if (property === 'noBully') {
@@ -189,25 +189,25 @@ class EditDogProfile extends Component {
                         <h4>What is the size of the dog?</h4>
                         <div>
                             <label>
-                                <input type="radio" id="tiny" checked={this.state.size === 'tiny'} onChange={(event) => this.handleRadio(event, 'tiny')}></input>
+                                <input type="radio" id="tiny" checked={this.state.size === 'Tiny'} onChange={(event) => this.handleRadio(event, 'tiny')}></input>
                                 Tiny
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="small" checked={this.state.size === 'small'} onChange={(event) => this.handleRadio(event, 'small')}></input>
+                                <input type="radio" id="small" checked={this.state.size === 'Small'} onChange={(event) => this.handleRadio(event, 'small')}></input>
                                 Small
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="medium" checked={this.state.size === 'medium'} onChange={(event) => this.handleRadio(event, 'medium')}></input>
+                                <input type="radio" id="medium" checked={this.state.size === 'Medium'} onChange={(event) => this.handleRadio(event, 'medium')}></input>
                                 Medium
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="large" checked={this.state.size === 'large'} onChange={(event) => this.handleRadio(event, 'large')}></input>
+                                <input type="radio" id="large" checked={this.state.size === 'Large'} onChange={(event) => this.handleRadio(event, 'large')}></input>
                                 Large
                             </label>
                         </div>
