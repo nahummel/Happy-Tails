@@ -9,8 +9,8 @@ import Dog from '../Dog/Dog'
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
   componentDidMount(){
+    this.props.dispatch({ type: "FETCH_USER_QUEST", payload: this.props.user.id })
     this.props.dispatch({type: "FETCH_DOGS"})
-    this.props.dispatch({type: "FETCH_USER_QUEST", payload: this.props.user.id})
   }
 
   render(){
@@ -21,7 +21,7 @@ class UserPage extends Component {
           <Grid container spacing={4}>
           {this.props.dogs.map((dog) => {
             return(
-              <Grid item xs={12} md={4} lg={2} xl={2}><Dog dog={dog} key={dog.id} history={this.props.history} dispatch={this.props.dispatch} /></Grid>
+              <Grid item xs={12} md={4} lg={2} xl={2}><Dog dog={dog} key={dog.id} user={this.props.user} userQuest={this.props.userQuest} history={this.props.history} dispatch={this.props.dispatch} /></Grid>
             )
           })}
           </Grid>
@@ -36,6 +36,7 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
+  userQuest: state.userQuest,
   dogs: state.dogs,
   dispatch: state.dispatch
 });

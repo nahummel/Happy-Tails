@@ -27,12 +27,11 @@ function* fetchUser() {
 function* fetchUserQuest(action) {
   try {
     const id = action.payload
-    console.log(id)
     const response = yield axios.get(`/api/user/${id}`);
     console.log('in fetchUserQuest', response.data);
     yield put({
       type: 'STORE_ANWSERS',
-      payload: response.data
+      payload: response.data[0]
     });
   } catch (error) {
     console.log(error);
