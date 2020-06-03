@@ -11,7 +11,7 @@ class AdoptDog extends Component {
 
     handleDelete = () => {
         console.log(this.props.dog.id)
-        this.props.dispatch({type: 'DELETE_DOG', payload: [this.props.dog.id, this.props.dog.rescue_id]});
+        this.props.dispatch({type: 'DELETE_DOG', payload: [this.props.dog.dog_id, this.props.dog.rescue_id]});
     }
 
     render() {

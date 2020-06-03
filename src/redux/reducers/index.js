@@ -5,7 +5,7 @@ import user from './userReducer';
 import userInfo from './userInfoReducer';
 import userQuest from './userQuestReducer';
 import dogs from './dogReducer';
-import aboutMe from './aboutMeReducer';
+import viewDog from './viewDogReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   userInfo,
   userQuest,
   dogs,
-  aboutMe,
+  viewDog,
 });
 
 export default rootReducer;

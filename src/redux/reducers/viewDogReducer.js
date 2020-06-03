@@ -1,4 +1,4 @@
-const aboutMeReducer = (state = [], action) => {
+const viewDogReducer = (state = [], action) => {
     switch (action.type) {
         case 'STORE_DOG':
             return action.payload;
@@ -8,4 +8,4 @@ const aboutMeReducer = (state = [], action) => {
 };
 
 
-export default aboutMeReducer;
+export default viewDogReducer;

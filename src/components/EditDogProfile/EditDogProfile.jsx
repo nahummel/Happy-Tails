@@ -359,7 +359,7 @@ const mapStateToProps = state => ({
         grooming: false,
         training: false,
         health: false,
-        ...state.aboutMe,
+        ...state.viewDog,
     },
     user: state.user,
     dispatch: state.dispatch

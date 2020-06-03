@@ -49,7 +49,7 @@ class DogProfile extends Component {
     }
 }
 const mapStateToProps = state => ({
-    ...state.aboutMe,
+    ...state.viewDog,
     dispatch: state.dispatch
 });
 

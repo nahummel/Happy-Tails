@@ -27,7 +27,7 @@ class AboutMe extends Component {
     }
 }
 const mapStateToProps = state => ({
-    details: state.aboutMe,
+    details: state.viewDog,
     dispatch: state.dispatch
 });
 
