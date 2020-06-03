@@ -19,6 +19,7 @@ import './App.css';
 import { UserType } from '../../constants';
 import AddDog from '../AddDog/AddDog';
 import DogProfile from '../DogProfile/DogProfile';
+import UserProfile from '../UserProfile/UserProfile';
 
 
 
@@ -44,6 +45,7 @@ class App extends Component {
             <ProtectedRoute exact path="/home" component={UserPage} allowedRole={UserType.USER} />
             <ProtectedRoute exact path="/rescue-home" component={RescuePage} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/about-me" component={AboutMe} allowedRole={UserType.USER} />
+            <ProtectedRoute path="/user=profile" component={UserProfile} allowedRole={UserType.USER} />
             <ProtectedRoute path="/add-dog" component={AddDog} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/dog-profile" component={DogProfile} allowedRole={UserType.RESCUE} />
             

@@ -10,6 +10,7 @@ import Dog from '../Dog/Dog'
 class UserPage extends Component {
   componentDidMount(){
     this.props.dispatch({type: "FETCH_DOGS"})
+    // this.props.dispatch({type: "FETCH_USER_QUEST", payload: this.props.user.id})
   }
 
   render(){

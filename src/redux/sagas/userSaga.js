@@ -24,8 +24,24 @@ function* fetchUser() {
   }
 }
 
+// function* fetchUserQuest(action) {
+//   try {
+//     const id = action.payload
+//     const response = yield axios.get(`/api/user/${id}`);
+//     console.log('in fetchUserQuest', response.data);
+//     yield put({
+//       type: 'STORE_ANWSERS',
+//       payload: response.data
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     alert('Error getting User Quest')
+//   }
+// }
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_USER_QUEST', fetchUserQuest);
 }
 
 export default userSaga;
