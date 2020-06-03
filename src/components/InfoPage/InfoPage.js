@@ -7,9 +7,8 @@ import React from 'react';
 
 const InfoPage = () => (
   <div>
-    <p>
-      Info Page
-    </p>
+    <h1>Happy Tails Mission</h1>
+    <p>*** Talk about mission here ***</p>
   </div>
 );
 

@@ -21,6 +21,7 @@ import AddDog from '../AddDog/AddDog';
 import DogProfile from '../DogProfile/DogProfile';
 import UserProfile from '../UserProfile/UserProfile';
 import EditDogProfile from '../EditDogProfile/EditDogProfile';
+import InfoPage from '../InfoPage/InfoPage';
 
 
 
@@ -39,6 +40,7 @@ class App extends Component {
             <Redirect exact from="/" to="/landing" />
           
             <Route exact path="/landing" component={LandingPage} />
+            <Route path="/about" component={InfoPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
