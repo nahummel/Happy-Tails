@@ -56,7 +56,7 @@ function* deleteDog(action) {
 function* updateDogInfo(action) {
     try{
         const id = action.payload.dog_id
-        const response = yield axios.put(`/api/dog/info/${id}`, action.payload);
+        const response = yield axios.put(`/api/dog/${id}`, action.payload);
         yield put({
             type: 'STORE_DOG',
             payload: action.payload
@@ -67,27 +67,12 @@ function* updateDogInfo(action) {
     }
 }
 
-function* updateDogQuest(action) {
-    try {
-        console.log()
-        const id = action.payload.id
-        const response = yield axios.put(`/api/dog/quest/${id}`, action.payload);
-        yield put({
-            type: 'STORE_DOG',
-            payload: action.payload
-        });
-    } catch (error) {
-        console.log(error);
-        alert('Error updating dog quest')
-    }
-}
 
 function* dogSaga() {
     yield takeLatest('FETCH_DOGS', fetchDogs);
     yield takeLatest('POST_DOG', postDog);
     yield takeLatest('DELETE_DOG', deleteDog);
     yield takeLatest('UPDATE_DOG_INFO', updateDogInfo);
-    yield takeLatest('UPDATE_DOG_QUEST', updateDogQuest);
 }
 
 export default dogSaga;

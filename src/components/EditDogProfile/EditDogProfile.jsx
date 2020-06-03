@@ -7,9 +7,8 @@ class EditDogProfile extends Component {
     }
 
     handleUpdate = () => {
-        this.props.dispatch({ type: 'UPDATE_DOGINFO', payload: { ...this.state } })
-        this.props.dispatch({ type: 'UPDATE_DOGQUEST', payload: { ...this.state } })
-        this.props.history.push('/rescue-home')
+        this.props.dispatch({ type: 'UPDATE_DOG_INFO', payload: { ...this.state } })
+        this.props.history.push('/dog-profile')
     }
 
     handleInputChangeFor = property => (event) => {
@@ -64,21 +63,21 @@ class EditDogProfile extends Component {
         }
         if (property === 'noBully') {
             this.setState({
-                rent: true
+                rent_breed: true
             }
             )
         } else if (property === 'yesBully') {
             this.setState({
-                rent: false
+                rent_breed: false
             })
         }
         if (property === 'yesDogs') {
             this.setState({
-                dogs: true
+                other_dogs: true
             })
         } else if (property === 'noDogs') {
             this.setState({
-                dogs: false
+                other_dogs: false
             })
         }
         if (property === 'noCats') {
@@ -110,20 +109,20 @@ class EditDogProfile extends Component {
         }
         if (property === 'noGroom') {
             this.setState({
-                groom: false
+                grooming: false
             })
         } else if (property === 'yesGroom') {
             this.setState({
-                groom: true
+                grooming: true
             })
         }
         if (property === 'noTrain') {
             this.setState({
-                train: false
+                training: false
             })
         } else if (property === 'yesTrain') {
             this.setState({
-                train: true
+                training: true
             })
         }
         if (property === 'noHealth') {
@@ -217,13 +216,13 @@ class EditDogProfile extends Component {
                         <h4>Is the dog breed considered a bully breed?</h4>
                         <div>
                             <label>
-                                <input type="radio" id="noBully" checked={this.state.rent === true} onChange={(event) => this.handleRadio(event, 'noBully')}></input>
+                                <input type="radio" id="noBully" checked={this.state.rent_breed === true} onChange={(event) => this.handleRadio(event, 'noBully')}></input>
                                 No
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="yesBully" checked={this.state.rent === false} onChange={(event) => this.handleRadio(event, 'yesBully')}></input>
+                                <input type="radio" id="yesBully" checked={this.state.rent_breed === false} onChange={(event) => this.handleRadio(event, 'yesBully')}></input>
                                 Yes
                             </label>
                         </div>
@@ -232,13 +231,13 @@ class EditDogProfile extends Component {
                         <h4>Do they get along with other dogs?</h4>
                         <div>
                             <label>
-                                <input type="radio" id="noDogs" checked={this.state.dogs === false} onChange={(event) => this.handleRadio(event, 'noDogs')}></input>
+                                <input type="radio" id="noDogs" checked={this.state.other_dogs === false} onChange={(event) => this.handleRadio(event, 'noDogs')}></input>
                                 No
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="yesDogs" checked={this.state.dogs === true} onChange={(event) => this.handleRadio(event, 'yesDogs')}></input>
+                                <input type="radio" id="yesDogs" checked={this.state.other_dogs === true} onChange={(event) => this.handleRadio(event, 'yesDogs')}></input>
                                 Yes
                             </label>
                         </div>
@@ -292,13 +291,13 @@ class EditDogProfile extends Component {
                         <h4>Do they require alot of grooming?</h4>
                         <div>
                             <label>
-                                <input type="radio" id="noGroom" checked={this.state.groom === false} onChange={(event) => this.handleRadio(event, 'noGroom')}></input>
+                                <input type="radio" id="noGroom" checked={this.state.grooming === false} onChange={(event) => this.handleRadio(event, 'noGroom')}></input>
                                 No
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="yesGroom" checked={this.state.groom === true} onChange={(event) => this.handleRadio(event, 'yesGroom')}></input>
+                                <input type="radio" id="yesGroom" checked={this.state.grooming === true} onChange={(event) => this.handleRadio(event, 'yesGroom')}></input>
                                 Yes
                             </label>
                         </div>
@@ -307,13 +306,13 @@ class EditDogProfile extends Component {
                         <h4>Are they in need of alot of extra training?</h4>
                         <div>
                             <label>
-                                <input type="radio" id="noTrain" checked={this.state.train === false} onChange={(event) => this.handleRadio(event, 'noTrain')}></input>
+                                <input type="radio" id="noTrain" checked={this.state.training === false} onChange={(event) => this.handleRadio(event, 'noTrain')}></input>
                                 No
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" id="YesTrain" checked={this.state.train === true} onChange={(event) => this.handleRadio(event, 'yesTrain')}></input>
+                                <input type="radio" id="YesTrain" checked={this.state.training === true} onChange={(event) => this.handleRadio(event, 'yesTrain')}></input>
                                 Yes
                             </label>
                         </div>
@@ -352,13 +351,13 @@ const mapStateToProps = state => ({
         age: '',
         size: '',
         age_range: '',
-        rent: true,
-        dogs: false,
+        rent_breed: true,
+        other_dogs: false,
         cats: false,
         kids: false,
         active: false,
-        groom: false,
-        train: false,
+        grooming: false,
+        training: false,
         health: false,
         ...state.aboutMe,
     },
