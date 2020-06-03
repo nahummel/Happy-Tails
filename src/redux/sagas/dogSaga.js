@@ -53,10 +53,25 @@ function* deleteDog(action) {
     }
 }
 
+function* updateDog(action) {
+    try{
+        const id = action.payload.dog_id
+        const response = yield axios.put(`/api/dog/${id}`, action.payload);
+        yield put({
+            type: 'STORE_DOG',
+            payload: action.payload
+        });
+    } catch (error) {
+        console.log(error);
+        alert('Error updating dog')
+    }
+}
+
 function* dogSaga() {
     yield takeLatest('FETCH_DOGS', fetchDogs);
     yield takeLatest('POST_DOG', postDog);
     yield takeLatest('DELETE_DOG', deleteDog);
+    yield takeLatest('UPDATE_DOG', updateDog);
 }
 
 export default dogSaga;

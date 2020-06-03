@@ -8,6 +8,7 @@ class EditDogProfile extends Component {
 
     handleUpdate = () => {
         this.props.dispatch({ type: 'UPDATE_DOG', payload: { ...this.state } })
+        this.props.history.push('/rescue-home')
     }
 
     handleInputChangeFor = property => (event) => {
