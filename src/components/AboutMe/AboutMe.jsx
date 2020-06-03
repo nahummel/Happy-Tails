@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AboutMe extends Component {
+
     handleClick = () => {
         this.props.history.push('/home');
     }
