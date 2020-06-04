@@ -47,3 +47,10 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
 }
+
+.landingButton {
+    padding: 10px;
+    background-color: #6666ff;
+    font: inherit;
+    
+}

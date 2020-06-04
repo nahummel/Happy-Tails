@@ -6,6 +6,7 @@ class Dog extends Component {
 
     handleClick = () => {
         this.props.dispatch({type: 'STORE_DOG', payload: this.props.dog});
+        this.props.dispatch({ type: 'FETCH_RESCUE', payload: this.props.dog.rescue_id })
         this.props.history.push('/about-me')
     }
 
@@ -56,9 +57,6 @@ class Dog extends Component {
     }
 
     render() {
-        console.log('dog', this.props.dog.size)
-        console.log('user', this.props.user)
-        console.log('userQuest', this.props.userQuest.size)
         return (
             <>
                 <Card>

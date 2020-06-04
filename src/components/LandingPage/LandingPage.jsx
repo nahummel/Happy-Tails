@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+
+
 class LandingPage extends Component {
 
     handleAdopt = () => {
@@ -14,7 +16,8 @@ class LandingPage extends Component {
         return(
             <>
                 <div className='landingPageButtons'>
-                    <button onClick={this.handleAdopt}>I am looking to Adopt</button>
+                    
+                    <button onClick={this.handleAdopt}>I am looking to Adopt</button>{' '}
                     <button onClick={this.handleRescue}>I am a Rescue or Shelter</button>
                 </div>
                 <div>

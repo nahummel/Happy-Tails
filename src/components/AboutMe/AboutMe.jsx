@@ -7,6 +7,10 @@ class AboutMe extends Component {
         this.props.history.push('/home');
     }
 
+    handleContact = () => {
+        
+    }
+
     render() {
         return (
             <>
@@ -22,6 +26,7 @@ class AboutMe extends Component {
                     <p>{this.props.details.description}</p>
                 </div>
                 <button onClick={this.handleClick}>Back</button>
+                <button onClick={this.handleContact}>Contact Rescue</button>
             </>
         )
     }
