@@ -28,6 +28,7 @@ class ContactReacue extends Component {
 
     handleClick = () => {
         this.props.dispatch({type:'SEND_MAIL', payload: this.state})
+        this.props.history.push('/about-me')
     }
 
     render() {

@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     const msg = {
         to: req.body.reciever,
         from: req.body.sender,
-        subject: 'Inquire',
+        subject: 'Inquiring About Adopting a Dog',
         text: req.body.emailText,
         html: `<strong>${req.body.emailText}</strong>`,
     };
