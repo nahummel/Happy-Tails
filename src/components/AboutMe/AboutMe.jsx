@@ -8,7 +8,7 @@ class AboutMe extends Component {
     }
 
     handleContact = () => {
-        
+        this.props.history.push('/contact-rescue');
     }
 
     render() {
@@ -22,8 +22,16 @@ class AboutMe extends Component {
                     <h2>Age: {this.props.details.age} years old</h2>
                 </div>
                 <div>
-                    <h4>Information about {this.props.details.name}</h4>
+                    <h3>Information about {this.props.details.name}:</h3>
                     <p>{this.props.details.description}</p>
+                </div>
+                <div>
+                    <h3>Rescue Information:</h3>
+                    <h4>{this.props.rescue.name}</h4>
+                    <p>{this.props.rescue.street}</p>
+                    <p>{this.props.rescue.city}, {this.props.rescue.state} {this.props.rescue.zipcode}</p>
+                    <p>Phone: {this.props.rescue.phone}</p>
+                    <p>Email: {this.props.rescue.email}</p>
                 </div>
                 <button onClick={this.handleClick}>Back</button>
                 <button onClick={this.handleContact}>Contact Rescue</button>
@@ -33,6 +41,7 @@ class AboutMe extends Component {
 }
 const mapStateToProps = state => ({
     details: state.viewDog,
+    rescue: state.rescue,
     dispatch: state.dispatch
 });
 

@@ -23,6 +23,7 @@ import UserProfile from '../UserProfile/UserProfile';
 import RescueProfile from '../RescueProfile/RescueProfile';
 import EditDogProfile from '../EditDogProfile/EditDogProfile';
 import InfoPage from '../InfoPage/InfoPage';
+import ContactRescue from '../ContactRescue/ContactRescue';
 
 
 
@@ -50,6 +51,7 @@ class App extends Component {
             <ProtectedRoute exact path="/rescue-home" component={RescuePage} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/about-me" component={AboutMe} allowedRole={UserType.USER} />
             <ProtectedRoute path="/user-profile" component={UserProfile} allowedRole={UserType.USER} />
+            <ProtectedRoute path="/contact-rescue" component={ContactRescue} allowedRole={UserType.USER} />
             <ProtectedRoute path="/add-dog" component={AddDog} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/dog-profile" component={DogProfile} allowedRole={UserType.RESCUE} />
             <ProtectedRoute path="/edit-dog" component={EditDogProfile} allowedRole={UserType.RESCUE} />
