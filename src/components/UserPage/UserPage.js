@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid';
 
 import Dog from '../Dog/Dog'
 
@@ -12,7 +12,6 @@ class UserPage extends Component {
     this.props.dispatch({ type: "FETCH_USER_QUEST"})
     this.props.dispatch({type: "FETCH_DOGS"})
   }
-
   render(){
     return (
        <>
