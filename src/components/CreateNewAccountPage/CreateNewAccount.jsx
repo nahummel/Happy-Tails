@@ -25,10 +25,6 @@ class CreateNewAccountPage extends Component {
 
   }
 
-  handleBack = () => {
-    this.props.history.push('/home')
-  }
-
   render() {
     return (
       <div>
@@ -101,9 +97,9 @@ class CreateNewAccountPage extends Component {
           <div>
             <button onClick={this.handleNext}>{this.state.is_user ? "Next" : "Register"}</button>
           </div>
-          {/* <div>
-            <button onClick={this.handleBack}>Back to Login</button>
-          </div> */}
+          <div>
+            <a href="/landing">Back to Login</a>
+          </div>
         </form>
       </div>
     );
