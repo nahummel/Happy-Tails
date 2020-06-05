@@ -10,7 +10,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 
 import "./Nav.css";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -32,11 +32,7 @@ const Nav = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h5" className={classes.title}>
-            <Link
-              className={classes.title}
-              component={RouterLink}
-              to={"/"}
-            >
+            <Link className={classes.title} component={RouterLink} to={"/"}>
               Happy Tails
             </Link>
           </Typography>
@@ -50,7 +46,12 @@ const Nav = (props) => {
               Home
             </Link>
           </Typography>
-
+          {/* Always show this link since the about page is not protected */}
+          <Typography variant="subtitle1">
+            <Link className={classes.link} component={RouterLink} to="/about">
+              About
+            </Link>
+          </Typography>
           {props.user.id && (
             <>
               <Typography variant="subtitle1">
@@ -66,11 +67,6 @@ const Nav = (props) => {
             </>
           )}
           {/* Always show this link since the about page is not protected */}
-          <Typography variant="subtitle1">
-            <Link className={classes.link} component={RouterLink} to="/about">
-              About
-            </Link>
-          </Typography>
         </Toolbar>
       </AppBar>
     </div>
