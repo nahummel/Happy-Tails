@@ -4,9 +4,8 @@ import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import LogOutButton from "../LogOutButton/LogOutButton";
 
 import "./Nav.css";
@@ -36,7 +35,7 @@ const Nav = (props) => {
             <Link
               className={classes.title}
               component={RouterLink}
-              to={!props.user.is_user ? "/rescue-home" : "/home"}
+              to={"/"}
             >
               Happy Tails
             </Link>

@@ -23,7 +23,6 @@ class LandingPage extends Component {
           container
           direction="row"
           justify="center"
-          alignItems="center"
           className="landingPageButtons"
         >
           <Grid item xs={6}>
