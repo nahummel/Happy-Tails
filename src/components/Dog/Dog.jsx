@@ -111,10 +111,10 @@ class Dog extends Component {
             title={`${dog.name} Photo`}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5">
               {dog.name}
             </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
+            <Typography variant="h6" color="textSecondary">
               {this.calculate()}% Matching
             </Typography>
           </CardContent>

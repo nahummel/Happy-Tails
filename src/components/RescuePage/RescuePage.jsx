@@ -1,52 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid } from '@material-ui/core'
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import { withStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 import AdoptDog from '../AdoptDog/AdoptDog'
 
-class RescuePage extends Component {
+const styles = {
+  root: {
+    marginTop: 40,
+    marginBottom: 40,
+  },
+};
 
+class RescuePage extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: "FETCH_DOGS", payload: this.props.user.id })
+    this.props.dispatch({ type: "FETCH_DOGS", payload: this.props.user.id });
   }
 
   handleAddDog = () => {
-    this.props.history.push('/add-dog')
-  }
+    this.props.history.push("/add-dog");
+  };
 
   render() {
+    const { classes } = this.props;
     return (
-      <>
-        <h1>Adoptable Dogs</h1>
-        <div>
-          <Grid container spacing={4}>
-            {this.props.dogs.map((dog) => {
-              return (
-                <Grid item xs={12} md={4} lg={2} xl={2}><AdoptDog dog={dog} key={dog.id} history={this.props.history} dispatch={this.props.dispatch} /></Grid>
-              )
-            })}
-            <Card>
-              <CardContent className="cardContent">
-                <Grid item xs={12} md={4} lg={2} xl={2}><button onClick={this.handleAddDog}>Add Dog</button></Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-        </div>
-      </>
-    )
+      <Container maxWidth="xl" className={classes.root}>
+        <Typography variant="h4" gutterBottom>
+          Adoptable Dogs
+        </Typography>
+        <Grid container direction="row" spacing={4}>
+          {this.props.dogs.map((dog) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+                <AdoptDog
+                  dog={dog}
+                  key={dog.id}
+                  user={this.props.user}
+                  userQuest={this.props.userQuest}
+                  history={this.props.history}
+                  dispatch={this.props.dispatch}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+    );
   }
-};
+}
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
   dogs: state.dogs,
   dispatch: state.dispatch
 });
 
-// this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(RescuePage);
+export default connect(mapStateToProps)(withStyles(styles)(RescuePage));
