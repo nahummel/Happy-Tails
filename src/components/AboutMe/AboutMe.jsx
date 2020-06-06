@@ -37,7 +37,7 @@ class AboutMe extends Component {
 
     return (
       <>
-        <Container maxWidth="xl" className={classes.breadcrumbs}>
+        <Container maxWidth="lg" className={classes.breadcrumbs}>
           <Breadcrumbs aria-label="breadcrumb">
             <Link component={RouterLink} to={"/home"}>
               My Matches
@@ -45,7 +45,7 @@ class AboutMe extends Component {
             <Typography color="textPrimary">{details.name}</Typography>
           </Breadcrumbs>
         </Container>
-        <Container maxWidth="xl" className={classes.root}>
+        <Container maxWidth="lg" className={classes.root}>
           <Grid container direction="row" alignItems="center" spacing={6}>
             <Grid item xs={12} sm={6} lg={4}>
               <Card>
@@ -97,7 +97,6 @@ class AboutMe extends Component {
             to={"/contact-rescue"}
             variant="contained"
             color="primary"
-            size="small"
           >
             Contact Rescue
           </Button>
