@@ -1,50 +1,115 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from "react-router-dom";
+
+const styles = {
+  root: {
+    marginTop: 20,
+    marginBottom: 40,
+  },
+  media: {
+    height: 400,
+  },
+  info: {
+    marginTop: 40,
+  },
+  breadcrumbs: {
+    marginTop: 20,
+  },
+  btn:{
+      marginTop: 20,
+  }
+};
 
 class AboutMe extends Component {
 
-    handleClick = () => {
-        this.props.history.push('/home');
-    }
+  render() {
+    const { classes, details, rescue } = this.props;
 
-    handleContact = () => {
-        this.props.history.push('/contact-rescue');
-    }
-
-    render() {
-        return (
-            <>
-                <img src={this.props.details.image} alt="dog photo" height="500px"></img>
-                <div>
-                    <h1>{this.props.details.name}</h1>
-                    <h2>Breed: {this.props.details.breed}</h2>
-                    <h2>Gender: {this.props.details.sex}</h2>
-                    <h2>Age: {this.props.details.age} years old</h2>
-                </div>
-                <div>
-                    <h3>Information about {this.props.details.name}:</h3>
-                    <p>{this.props.details.description}</p>
-                </div>
-                <div>
-                    <h3>Rescue Information:</h3>
-                    <h4>{this.props.rescue.name}</h4>
-                    <p>{this.props.rescue.street}</p>
-                    <p>{this.props.rescue.city}, {this.props.rescue.state} {this.props.rescue.zipcode}</p>
-                    <p>Phone: {this.props.rescue.phone}</p>
-                    <p>Email: {this.props.rescue.email}</p>
-                </div>
-                <button onClick={this.handleClick}>Back</button>
-                <button onClick={this.handleContact}>Contact Rescue</button>
-            </>
-        )
-    }
+    return (
+      <>
+        <Container maxWidth="xl" className={classes.breadcrumbs}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link component={RouterLink} to={"/home"}>
+              My Matches
+            </Link>
+            <Typography color="textPrimary">{details.name}</Typography>
+          </Breadcrumbs>
+        </Container>
+        <Container maxWidth="xl" className={classes.root}>
+          <Grid container direction="row" alignItems="center" spacing={6}>
+            <Grid item xs={12} sm={6} lg={4}>
+              <Card>
+                <CardMedia
+                  className={classes.media}
+                  image={details.image}
+                  title={`${details.name} Photo`}
+                />
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={8}>
+              <Typography variant="h3" gutterBottom>
+                {details.name}
+              </Typography>
+              <Typography variant="h5">
+                <strong>Breed:</strong> {details.breed}
+              </Typography>
+              <Typography variant="h5">
+                <strong>Gender:</strong> {details.sex}
+              </Typography>
+              <Typography variant="h5">
+                <strong>Age:</strong> {details.age} years old
+              </Typography>
+            </Grid>
+          </Grid>
+          <div className={classes.info}>
+            <Typography variant="h5" gutterBottom>
+              Information about {details.name}
+            </Typography>
+            <Typography variant="body1">{details.description}</Typography>
+          </div>
+          <div className={classes.info}>
+            <Typography variant="h5" gutterBottom>
+              Rescue Information
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              {rescue.name}
+            </Typography>
+            <Typography variant="body1">{rescue.street}</Typography>
+            <Typography variant="body1" gutterBottom>
+              {rescue.city}, {rescue.state} {rescue.zipcode}
+            </Typography>
+            <Typography variant="body1">Phone: {rescue.phone}</Typography>
+            <Typography variant="body1">Email: {rescue.email}</Typography>
+          </div>
+          <Button
+            className={classes.btn}
+            component={RouterLink}
+            to={"/contact-rescue"}
+            variant="contained"
+            color="primary"
+            size="small"
+          >
+            Contact Rescue
+          </Button>
+        </Container>
+      </>
+    );
+  }
 }
-const mapStateToProps = state => ({
-    details: state.viewDog,
-    rescue: state.rescue,
-    dispatch: state.dispatch
+const mapStateToProps = (state) => ({
+  details: state.viewDog,
+  rescue: state.rescue,
+  dispatch: state.dispatch,
 });
-
-// this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(AboutMe);
-
+ 
+export default connect(mapStateToProps)(withStyles(styles)(AboutMe));

@@ -89,7 +89,7 @@ class AdoptionLoginPage extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChangeFor("username")}
                 className={classes.input}
-                error={this.props.errors.loginMessage}
+                error={this.props.errors.loginMessage !== ""}
               />
               <TextField
                 label="Password"
@@ -99,7 +99,7 @@ class AdoptionLoginPage extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChangeFor("password")}
                 className={classes.input}
-                error={this.props.errors.loginMessage}
+                error={this.props.errors.loginMessage !== ""}
                 helperText={this.props.errors.loginMessage}
               />
               <div className={classes.btnContainer}>

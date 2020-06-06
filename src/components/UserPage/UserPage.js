@@ -26,10 +26,10 @@ class UserPage extends Component {
         <Typography variant="h4" gutterBottom>
           My Matches
         </Typography>
-        <Grid container direction="row" justify="center" spacing={4}>
+        <Grid container direction="row" spacing={4}>
           {this.props.dogs.map((dog) => {
             return (
-              <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
                 <Dog
                   dog={dog}
                   key={dog.id}
