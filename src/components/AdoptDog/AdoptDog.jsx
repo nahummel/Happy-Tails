@@ -61,7 +61,7 @@ class AdoptDog extends Component {
           </CardActions>
         </Card>
       </>
-    );
+    ); 
   }
 }
 

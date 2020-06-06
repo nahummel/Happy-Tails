@@ -82,7 +82,6 @@ class ContactRescue extends Component {
             />
             <div className={classes.btnContainer}>
               <Button
-                color="primary"
                 size="medium"
                 className={classes.button}
                 onClick={this.handleBack}
