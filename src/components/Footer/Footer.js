@@ -1,5 +1,7 @@
 import React from 'react';
+import Typography from "@material-ui/core/Typography";
 import './Footer.css'
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -8,7 +10,9 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    &copy; Prime Digital Academy
+     <Typography variant="caption" gutterBottom>
+          &copy; Natalie Hummel
+        </Typography>
   </footer>
 );
 
