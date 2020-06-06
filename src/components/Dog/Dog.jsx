@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -30,55 +28,72 @@ class Dog extends Component {
   calculate = () => {
     let totalMatches = 0;
     const total = 11;
-    for (let size of this.props.userQuest.size) {
-      if (size === this.props.dog.size) {
-        totalMatches++;
+    const { userQuest, dog } = this.props;
+    if (!userQuest || !dog) {
+      return 0;
+    }
+
+    if (userQuest.size && userQuest.size.length) {
+      for (let size of userQuest.size) {
+        if (size === dog.size) {
+          totalMatches++;
+        }
       }
     }
-    for (let age of this.props.userQuest.age_range) {
-      if (age === this.props.dog.age_range) {
-        totalMatches++;
+
+    if (userQuest.age_range && userQuest.age_range.length) {
+      for (let age of userQuest.age_range) {
+        if (age === dog.age_range) {
+          totalMatches++;
+        }
       }
     }
-    for (let sex of this.props.userQuest.sex) {
-      if (sex === this.props.dog.sex) {
-        totalMatches++;
+
+    if (userQuest.sex && userQuest.sex.length) {
+      for (let sex of userQuest.sex) {
+        if (sex === dog.sex) {
+          totalMatches++;
+        }
       }
     }
-    if (
-      this.props.userQuest.rent_breed === this.props.dog.rent_breed ||
-      !this.props.userQuest.rent_breed
-    ) {
+
+    // If user is renting, then the dog can't be a bully breed
+    // OR if user owns
+    if (userQuest.rent_breed === dog.rent_breed || !userQuest.rent_breed) {
       totalMatches++;
     }
-    if (
-      this.props.userQuest.other_dogs === this.props.dog.other_dogs ||
-      !this.props.userQuest.other_dogs
-    ) {
+    // If user has other dogs, then the dog needs to get along with other dogs
+    // OR if user does not have other dogs
+    if (userQuest.other_dogs === dog.other_dogs || !userQuest.other_dogs) {
       totalMatches++;
     }
-    if (
-      this.props.userQuest.cats === this.props.dog.cats ||
-      !this.props.userQuest.cats
-    ) {
+    // If user has cats, then the dog needs to get along with cats
+    // OR if user does not have cats
+    if (userQuest.cats === dog.cats || !userQuest.cats) {
       totalMatches++;
     }
-    if (
-      this.props.userQuest.kids === this.props.dog.kids ||
-      !this.props.userQuest.kids
-    ) {
+    // If user has kids, then the dog needs to get along with kids
+    // OR if user does not have kids
+    if (userQuest.kids === dog.kids || !userQuest.kids) {
       totalMatches++;
     }
-    if (this.props.userQuest.grooming === this.props.dog.grooming) {
+    // If the dog requires grooming, then user must be okay with grooming
+    // OR if dog does not require grooming
+    if (dog.grooming === userQuest.grooming || !dog.grooming) {
       totalMatches++;
     }
-    if (this.props.userQuest.active === this.props.dog.active) {
+    // If the dog requires a lot of activity, then user must be active
+    if (userQuest.active === dog.active) {
       totalMatches++;
     }
-    if (this.props.userQuest.training === this.props.dog.training) {
+    // If the dog requires training, then user must be experienced in training
+    // OR if dog does not require training
+    if (dog.training === userQuest.training || !dog.training) {
       totalMatches++;
     }
-    if (this.props.userQuest.health === this.props.dog.health) {
+    // If the dog has health problems, then user must be willing to adopt a dog with health problems
+    // OR if dog does not have health problems
+    if (dog.health === userQuest.health || !dog.health) {
       totalMatches++;
     }
 

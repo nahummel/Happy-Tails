@@ -53,16 +53,14 @@ class LandingPage extends Component {
             Happy Tails Mission
           </Typography>
           <Typography variant="body1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
-            neque vitae tempus quam pellentesque nec. Sodales ut eu sem integer
-            vitae justo eget magna fermentum. Tristique risus nec feugiat in
-            fermentum posuere urna nec tincidunt. Est sit amet facilisis magna
-            etiam tempor. Dui vivamus arcu felis bibendum. Eget lorem dolor sed
-            viverra ipsum nunc aliquet bibendum enim. Euismod quis viverra nibh
-            cras pulvinar mattis. Aliquet bibendum enim facilisis gravida neque
-            convallis a cras. Sit amet nisl suscipit adipiscing bibendum est
-            ultricies integer.
+            Every year thousands of dogs are surrendered to shelters and rescues
+            due to behavioral issues. These issues typically stem from improper
+            training or knowledge of the breed and temperament of their dog.
+            Here at Happy Tails, it is our mission to match available dogs to
+            prospective dog owners based on their personal information and
+            lifestyle. We hope that by seeing how well one matches the available
+            dogs they can make an informed decision when choosing a dog. We want
+            every tail to end happily.
           </Typography>
         </Paper>
       </Container>
