@@ -45,7 +45,7 @@ class AboutMe extends Component {
             <Typography color="textPrimary">{details.name}</Typography>
           </Breadcrumbs>
         </Container>
-        <Container maxWidth="lg" className={classes.root}>
+        <Container maxWidth="xl" className={classes.root}>
           <Grid container direction="row" alignItems="center" spacing={6}>
             <Grid item xs={12} sm={6} lg={4}>
               <Card>

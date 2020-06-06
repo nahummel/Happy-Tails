@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     background-color: #f7f7f7;
 }
@@ -8,15 +9,6 @@ body {
     background-color: #ff4545;
     margin: 50px;
 }
-
-/* form {
-    background-color: #dbd5d5;
-    width: 30%;
-    height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px; 
-}*/
 
 input {
     margin: 5px;

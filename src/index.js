@@ -41,6 +41,12 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      '"Noto Sans JP"',
+      "sans-serif",
+    ].join(","),
+  },
   palette: {
     primary: { main: indigo[700] },
     secondary: { main: teal[700] },
