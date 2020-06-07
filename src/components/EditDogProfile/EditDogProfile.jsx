@@ -1,369 +1,424 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import TextField from "@material-ui/core/TextField";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+
+const styles = {
+  root: {
+    marginTop: 20,
+    marginBottom: 40,
+  },
+  input: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  btn: {
+    marginTop: 10,
+  },
+};
 
 class EditDogProfile extends Component {
-    state = {
-        ...this.props.details
-    }
+  state = {
+    ...this.props.details,
+  };
 
-    handleUpdate = () => {
-        this.props.dispatch({ type: 'UPDATE_DOG_INFO', payload: { ...this.state } })
-        this.props.history.push('/dog-profile')
-    }
+  handleUpdate = () => {
+    this.props.dispatch({
+      type: "UPDATE_DOG_INFO",
+      payload: { ...this.state },
+    });
+    this.props.history.push("/dog-profile");
+  };
 
-    handleInputChangeFor = property => (event) => {
+  handleInputChangeFor = (property) => (event) => {
+    this.setState({
+      [property]: event.target.value,
+    });
+    if (property === "age") {
+      if (event.target.value <= 2) {
         this.setState({
-            [property]: event.target.value,
-        })
-        if (property === 'age') {
-            if (event.target.value <= 2) {
-                this.setState({
-                    age_range: 'young'
-                })
-            } else if (event.target.value <= 6) {
-                this.setState({
-                    age_range: 'adult'
-                })
-            } else if (event.target.value > 6) {
-                this.setState({
-                    age_range: 'senior'
-                })
-            }
-        }
+          age_range: "young",
+        });
+      } else if (event.target.value <= 6) {
+        this.setState({
+          age_range: "adult",
+        });
+      } else if (event.target.value > 6) {
+        this.setState({
+          age_range: "senior",
+        });
+      }
     }
+  };
 
-    handleRadio = (event, property) => {
-        if (property === 'male') {
-            this.setState({
-                sex: 'Male'
-            }
-            )
-        } else if (property === 'female') {
-            this.setState({
-                sex: 'Female'
-            })
-        }
-        if (property === 'tiny') {
-            this.setState({
-                size: 'Tiny'
-            }
-            )
-        } else if (property === 'small') {
-            this.setState({
-                size: 'Small'
-            })
-        } else if (property === 'medium') {
-            this.setState({
-                size: 'Medium'
-            })
-        } else if (property === 'large') {
-            this.setState({
-                size: 'Large'
-            })
-        }
-        if (property === 'noBully') {
-            this.setState({
-                rent_breed: true
-            }
-            )
-        } else if (property === 'yesBully') {
-            this.setState({
-                rent_breed: false
-            })
-        }
-        if (property === 'yesDogs') {
-            this.setState({
-                other_dogs: true
-            })
-        } else if (property === 'noDogs') {
-            this.setState({
-                other_dogs: false
-            })
-        }
-        if (property === 'noCats') {
-            this.setState({
-                cats: false
-            })
-        } else if (property === 'yesCats') {
-            this.setState({
-                cats: true
-            })
-        }
-        if (property === 'noKids') {
-            this.setState({
-                kids: false
-            })
-        } else if (property === 'yesKids') {
-            this.setState({
-                kids: true
-            })
-        }
-        if (property === 'noActive') {
-            this.setState({
-                active: false
-            })
-        } else if (property === 'yesActive') {
-            this.setState({
-                active: true
-            })
-        }
-        if (property === 'noGroom') {
-            this.setState({
-                grooming: false
-            })
-        } else if (property === 'yesGroom') {
-            this.setState({
-                grooming: true
-            })
-        }
-        if (property === 'noTrain') {
-            this.setState({
-                training: false
-            })
-        } else if (property === 'yesTrain') {
-            this.setState({
-                training: true
-            })
-        }
-        if (property === 'noHealth') {
-            this.setState({
-                health: false
-            })
-        } else if (property === 'yesHealth') {
-            this.setState({
-                health: true
-            })
-        }
+  handleChange = (event, property) => {
+    console.log(event.target.value, property);
+    if (event.target.value === "true" || event.target.value === "false") {
+      this.setState({
+        [property]: event.target.value === "true",
+      });
+    } else {
+      this.setState({
+        [property]: event.target.value,
+      });
     }
+  };
 
+  render() {
+    const { classes } = this.props;
+    return (
+      <>
+        <Container maxWidth="lg" className={classes.root}>
+          <Typography variant="h4" gutterBottom>
+            Edit Profile
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            Personal Information
+          </Typography>
+          <div className={classes.input}>
+            <TextField
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              value={this.state.name}
+              onChange={this.handleInputChangeFor("name")}
+            />
+          </div>
+          <div className={classes.input}>
+            <TextField
+              id="outlined-basic"
+              label="Breed"
+              variant="outlined"
+              value={this.state.breed}
+              onChange={this.handleInputChangeFor("breed")}
+            />
+          </div>
+          <div className={classes.input}>
+            <TextField
+              id="outlined-basic"
+              label="Age"
+              variant="outlined"
+              value={this.state.age}
+              onChange={this.handleInputChangeFor("age")}
+            />
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup
+                aria-label="sex"
+                name="sex1"
+                defaultValue={this.state.sex}
+                onChange={(event) => this.handleChange(event, "sex")}
+              >
+                <FormControlLabel
+                  value="Male"
+                  control={<Radio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="Female"
+                  control={<Radio />}
+                  label="Female"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <TextField
+              id="outlined-basic"
+              label="Image URL"
+              variant="outlined"
+              fullWidth
+              value={this.state.image}
+              onChange={this.handleInputChangeFor("image")}
+            />
+          </div>
+          <div className={classes.input}>
+            <TextField
+              id="outlined-basic"
+              label="Description"
+              variant="outlined"
+              multiline
+              rows={5}
+              fullWidth
+              value={this.state.description}
+              onChange={this.handleInputChangeFor("description")}
+            />
+          </div>
+          <Typography variant="h5" gutterBottom>
+            Matching Quesionnaire
+          </Typography>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                What is the size of the dog?
+              </FormLabel>
 
-    render() {
-        return (
-            <>
-                <form>
-                    <h1>Edit Profile</h1>
-                    <div>
-                        <label htmlFor="name">
-                            Name:
-                            <input type="text" placeholder="name" value={this.state.name} onChange={this.handleInputChangeFor('name')} />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label htmlFor="breed">
-                            Breed:
-                            <input type="text" placeholder="breed" value={this.state.breed} onChange={this.handleInputChangeFor('breed')} />
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="age">
-                            Age:
-                            <input type="text" placeholder="years old" value={this.state.age} onChange={this.handleInputChangeFor('age')} />
-                        </label>
-                    </div>
-                    <div>
-                        <p>Gender:</p>
-                        <label>
-                            <input type="radio" id="male" checked={this.state.sex === 'Male'} onChange={(event) => this.handleRadio(event, 'male')}></input>
-                            Male
-                        </label>
-                        <label>
-                            <input type="radio" id="female" checked={this.state.sex === 'Female'} onChange={(event) => this.handleRadio(event, 'female')}></input>
-                            Female
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="image">
-                            Image:
-                            <input type="text" placeholder="image url" value={this.state.image} onChange={this.handleInputChangeFor('image')} />
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="description">
-                            Description:
-                            <input type="text" placeholder="description" value={this.state.description} onChange={this.handleInputChangeFor('description')} />
-                        </label>
-                    </div>
-                    <h3>Matching Questionnaire</h3>
-                    <div>
-                        <h4>What is the size of the dog?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="tiny" checked={this.state.size === 'Tiny'} onChange={(event) => this.handleRadio(event, 'tiny')}></input>
-                                Tiny
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="small" checked={this.state.size === 'Small'} onChange={(event) => this.handleRadio(event, 'small')}></input>
-                                Small
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="medium" checked={this.state.size === 'Medium'} onChange={(event) => this.handleRadio(event, 'medium')}></input>
-                                Medium
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="large" checked={this.state.size === 'Large'} onChange={(event) => this.handleRadio(event, 'large')}></input>
-                                Large
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Is the dog breed considered a bully breed?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noBully" checked={this.state.rent_breed === true} onChange={(event) => this.handleRadio(event, 'noBully')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesBully" checked={this.state.rent_breed === false} onChange={(event) => this.handleRadio(event, 'yesBully')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Do they get along with other dogs?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noDogs" checked={this.state.other_dogs === false} onChange={(event) => this.handleRadio(event, 'noDogs')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesDogs" checked={this.state.other_dogs === true} onChange={(event) => this.handleRadio(event, 'yesDogs')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Do they get along with cats?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noCats" checked={this.state.cats === false} onChange={(event) => this.handleRadio(event, 'noCats')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesCats" checked={this.state.cats === true} onChange={(event) => this.handleRadio(event, 'yesCats')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Do they get along with children?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noKids" checked={this.state.kids === false} onChange={(event) => this.handleRadio(event, 'noKids')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesKids" checked={this.state.kids === true} onChange={(event) => this.handleRadio(event, 'yesKids')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Are they hyperactive and require alot of physical activity?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noActive" checked={this.state.active === false} onChange={(event) => this.handleRadio(event, 'noActive')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesActive" checked={this.state.active === true} onChange={(event) => this.handleRadio(event, 'yesActive')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Do they require alot of grooming?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noGroom" checked={this.state.grooming === false} onChange={(event) => this.handleRadio(event, 'noGroom')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesGroom" checked={this.state.grooming === true} onChange={(event) => this.handleRadio(event, 'yesGroom')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Are they in need of alot of extra training?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noTrain" checked={this.state.training === false} onChange={(event) => this.handleRadio(event, 'noTrain')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="YesTrain" checked={this.state.training === true} onChange={(event) => this.handleRadio(event, 'yesTrain')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Do they have any health problems?</h4>
-                        <div>
-                            <label>
-                                <input type="radio" id="noHealth" checked={this.state.health === false} onChange={(event) => this.handleRadio(event, 'noHealth')}></input>
-                                No
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="radio" id="yesHealth" checked={this.state.health === true} onChange={(event) => this.handleRadio(event, 'yesHealth')}></input>
-                                Yes
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <div>
-                    <button onClick={this.handleUpdate}>Save Changes</button>
-                </div>
-            </>
-        )
-    }
+              <RadioGroup
+                aria-label="size"
+                name="size1"
+                defaultValue={this.state.size}
+                onChange={(event) => this.handleChange(event, "size")}
+              >
+                <FormControlLabel
+                  value="Tiny"
+                  control={<Radio />}
+                  label="Tiny"
+                />
+                <FormControlLabel
+                  value="Small"
+                  control={<Radio />}
+                  label="Small"
+                />
+                <FormControlLabel
+                  value="Medium"
+                  control={<Radio />}
+                  label="Medium"
+                />
+                <FormControlLabel
+                  value="Large"
+                  control={<Radio />}
+                  label="Large"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Is the dog breed considered a bully breed?
+              </FormLabel>
+              <RadioGroup
+                aria-label="rent"
+                name="rent1"
+                defaultValue={String(this.state.rent_breed)}
+                onChange={(event) => this.handleChange(event, "rent_breed")}
+              >
+                <FormControlLabel value="true" control={<Radio />} label="No" />
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Do they get along with other dogs?
+              </FormLabel>
+              <RadioGroup
+                aria-label="other dogs"
+                name="other_dogs"
+                defaultValue={String(this.state.other_dogs)}
+                onChange={(event) => this.handleChange(event, "other_dogs")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Do they get along with cats?
+              </FormLabel>
+              <RadioGroup
+                aria-label="cats"
+                name="cats"
+                defaultValue={String(this.state.cats)}
+                onChange={(event) => this.handleChange(event, "cats")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Do they get along with children?
+              </FormLabel>
+              <RadioGroup
+                aria-label="kids"
+                name="kids"
+                defaultValue={String(this.state.kids)}
+                onChange={(event) => this.handleChange(event, "kids")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Are they hyperactive and require alot of physical activity?
+              </FormLabel>
+              <RadioGroup
+                aria-label="active"
+                name="active"
+                defaultValue={String(this.state.active)}
+                onChange={(event) => this.handleChange(event, "active")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Do they require alot of grooming?
+              </FormLabel>
+              <RadioGroup
+                aria-label="grooming"
+                name="grooming"
+                defaultValue={String(this.state.grooming)}
+                onChange={(event) => this.handleChange(event, "grooming")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Are they in need of alot of extra training?
+              </FormLabel>
+              <RadioGroup
+                aria-label="training"
+                name="training"
+                defaultValue={String(this.state.training)}
+                onChange={(event) => this.handleChange(event, "training")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.input}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                Do they have any health problems?
+              </FormLabel>
+              <RadioGroup
+                aria-label="training"
+                name="health"
+                defaultValue={String(this.state.health)}
+                onChange={(event) => this.handleChange(event, "health")}
+              >
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleUpdate}
+              className={classes.btn}
+            >
+              Save Changes
+            </Button>
+          </div>
+        </Container>
+      </>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    details: {
-        name: '',
-        image: '',
-        description: '',
-        breed: '',
-        sex: '',
-        age: '',
-        size: '',
-        age_range: '',
-        rent_breed: true,
-        other_dogs: false,
-        cats: false,
-        kids: false,
-        active: false,
-        grooming: false,
-        training: false,
-        health: false,
-        ...state.viewDog,
-    },
-    user: state.user,
-    dispatch: state.dispatch
+const mapStateToProps = (state) => ({
+  details: {
+    name: "",
+    image: "",
+    description: "",
+    breed: "",
+    sex: "",
+    age: "",
+    size: "",
+    age_range: "",
+    rent_breed: true,
+    other_dogs: false,
+    cats: false,
+    kids: false,
+    active: false,
+    grooming: false,
+    training: false,
+    health: false,
+    ...state.viewDog,
+  },
+  user: state.user,
+  dispatch: state.dispatch,
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(EditDogProfile);
+export default connect(mapStateToProps)(withStyles(styles)(EditDogProfile));
