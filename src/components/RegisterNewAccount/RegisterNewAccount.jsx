@@ -9,9 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 
 const styles = {
-  root: {
-    marginTop: 30,
-  },
+ 
 };
 
 class RegisterNew extends Component {
@@ -60,7 +58,7 @@ class RegisterNew extends Component {
 
     return (
       <>
-        <div className={classes.root}>
+        <div>
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label) => (
               <Step key={label}>
