@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+
 
 class CreateNewAccountPage extends Component {
   state = {
