@@ -35,14 +35,7 @@ CREATE TABLE "questionnaires" (
     "grooming" BOOLEAN,
     "active" BOOLEAN,
     "training" BOOLEAN,
-    "working_breed" BOOLEAN,
     "health" BOOLEAN,
-    "dog_id" INT,
-    "user_id" INT
-);
-
-CREATE TABLE "matches" (
-    "id" SERIAL PRIMARY KEY,
     "dog_id" INT,
     "user_id" INT
 );

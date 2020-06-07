@@ -1,7 +1,0 @@
-.background-image {
-  position: fixed;
-  background: url("/dog.jpg") no-repeat center center fixed;
-  height: 100vh;
-  width: 100%;
-  z-index: -1;
-}
