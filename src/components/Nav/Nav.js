@@ -8,7 +8,7 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import LogOutButton from "../LogOutButton/LogOutButton";
 
-import "./Nav.css";
+// import "./Nav.css";
 
 const useStyles = makeStyles(() => ({
   root: {
