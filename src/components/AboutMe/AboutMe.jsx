@@ -25,13 +25,12 @@ const styles = {
   breadcrumbs: {
     marginTop: 20,
   },
-  btn:{
-      marginTop: 20,
-  }
+  btn: {
+    marginTop: 20,
+  },
 };
 
 class AboutMe extends Component {
-
   render() {
     const { classes, details, rescue } = this.props;
 
@@ -45,7 +44,7 @@ class AboutMe extends Component {
             <Typography color="textPrimary">{details.name}</Typography>
           </Breadcrumbs>
         </Container>
-        <Container maxWidth="xl" className={classes.root}>
+        <Container maxWidth="lg" className={classes.root}>
           <Grid container direction="row" alignItems="center" spacing={6}>
             <Grid item xs={12} sm={6} lg={4}>
               <Card>
@@ -110,5 +109,5 @@ const mapStateToProps = (state) => ({
   rescue: state.rescue,
   dispatch: state.dispatch,
 });
- 
+
 export default connect(mapStateToProps)(withStyles(styles)(AboutMe));

@@ -4,8 +4,34 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import { withStyles } from "@material-ui/core/styles";
 
-import "./LandingPage.css";
+const styles = {
+  root: {
+    height: "100vh",
+  },
+  backgroundImage: {
+    backgroundColor: "black",
+    background: 'url("/dog.jpg") no-repeat center center fixed',
+    position: "fixed",
+    height: "100vh",
+    width: "100%",
+    zIndex: "-1",
+  },
+  callToAction: {
+    position: "absolute",
+    top: "45%",
+    left: "10%",
+  },
+  title: {
+    color: "#fff",
+    marginBottom: 30,
+  },
+  btn: {
+    marginRight: 30,
+    marginBottom: 30,
+  },
+};
 
 class LandingPage extends Component {
   handleAdopt = () => {
@@ -17,17 +43,24 @@ class LandingPage extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Container maxWidth="md">
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          className="landingPageButtons"
-        >
-          <Grid item xs={6}>
+      <>
+        <div className={classes.backgroundImage} />
+        <div className={classes.callToAction}>
+          <div className={classes.title}>
+            <Typography variant="h4" gutterBottom>
+              Find the Perfect Dog for You
+            </Typography>
+            <Typography variant="h6">
+              Take our questionnaire to find the new addition to your family!
+            </Typography>
+          </div>
+
+          <div>
             <Button
-              className="landingPageBtn"
+              className={classes.btn}
               onClick={this.handleAdopt}
               variant="contained"
               color="primary"
@@ -35,10 +68,8 @@ class LandingPage extends Component {
             >
               I am looking to Adopt
             </Button>
-          </Grid>
-          <Grid item xs={6}>
             <Button
-              className="landingPageBtn"
+              className={classes.btn}
               onClick={this.handleRescue}
               variant="contained"
               color="primary"
@@ -46,26 +77,11 @@ class LandingPage extends Component {
             >
               I am a Rescue or Shelter
             </Button>
-          </Grid>
-        </Grid>
-        <Paper variant="outlined" className="mission">
-          <Typography variant="h6" gutterBottom>
-            Happy Tails Mission
-          </Typography>
-          <Typography variant="body1">
-            Every year thousands of dogs are surrendered to shelters and rescues
-            due to behavioral issues. These issues typically stem from improper
-            training or knowledge of the breed and temperament of their dog.
-            Here at Happy Tails, it is our mission to match available dogs to
-            prospective dog owners based on their personal information and
-            lifestyle. We hope that by seeing how well one matches the available
-            dogs they can make an informed decision when choosing a dog. We want
-            every tail to end happily.
-          </Typography>
-        </Paper>
-      </Container>
+          </div>
+        </div>
+      </>
     );
   }
 }
 
-export default LandingPage;
+export default withStyles(styles)(LandingPage);

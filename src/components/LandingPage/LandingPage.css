@@ -1,10 +1,7 @@
-
-.landingPageButtons {
-    margin: 80px auto;
-    text-align: center;
-}
-
-.mission {
-    text-align: center;
-    padding: 30px;
+.background-image {
+  position: fixed;
+  background: url("/dog.jpg") no-repeat center center fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
 }
