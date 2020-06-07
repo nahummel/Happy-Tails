@@ -416,8 +416,8 @@ class AddDog extends Component {
             <Button
               variant="contained"
               color="primary"
-              onClick={this.handleAddDog}
               className={classes.btn}
+              onClick={this.handleAddDog}
             >
               Add Dog
             </Button>

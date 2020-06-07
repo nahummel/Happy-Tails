@@ -15,7 +15,7 @@ const styles = {
 class RegisterNew extends Component {
   state = {
     componentToShow: "userInfo",
-    activeStep: 0,
+    activeStep: 1,
   };
 
   handleCreateNewAccountClick = (user) => {
