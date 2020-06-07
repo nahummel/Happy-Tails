@@ -26,7 +26,7 @@ function* fetchDogs(action) {
 
 function* postDog(action) {
     try {
-        const response = yield axios.post('/api/dog', action.payload);
+        yield axios.post('/api/dog', action.payload);
         yield put({
             type: 'FETCH_DOGS',
             payload: action.payload.rescue_id
@@ -41,7 +41,7 @@ function* deleteDog(action) {
     try {
         const id = action.payload[0]
         const rescue_id = action.payload[1]
-        const response = yield axios.delete(`/api/dog/${id}`);
+        yield axios.delete(`/api/dog/${id}`);
         yield put({
             type: 'FETCH_DOGS',
             payload: rescue_id
@@ -55,7 +55,7 @@ function* deleteDog(action) {
 function* updateDogInfo(action) {
     try{
         const id = action.payload.dog_id
-        const response = yield axios.put(`/api/dog/${id}`, action.payload);
+        yield axios.put(`/api/dog/${id}`, action.payload);
         yield put({
             type: 'STORE_DOG',
             payload: action.payload

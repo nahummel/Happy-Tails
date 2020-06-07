@@ -6,10 +6,8 @@ import createSagaMiddleware from "redux-saga";
 import logger from "redux-logger";
 import {
   createMuiTheme,
-  makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
-import blue from "@material-ui/core/colors/blue";
 import indigo from "@material-ui/core/colors/indigo";
 import teal from "@material-ui/core/colors/teal";
 
