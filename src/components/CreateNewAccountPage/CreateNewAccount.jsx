@@ -20,11 +20,11 @@ const styles = {
     marginTop: 20,
     marginBottom: 20,
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   column: {
     flexGrow: 1,
-    marginRight: 10
+    marginRight: 10,
   },
   btn: {
     marginTop: 10,
@@ -33,7 +33,7 @@ const styles = {
   title: {
     marginTop: 40,
     marginBottom: 30,
-  }
+  },
 };
 
 class CreateNewAccountPage extends Component {
@@ -63,8 +63,19 @@ class CreateNewAccountPage extends Component {
     }
   };
 
+  disableBtn = () => {
+    for (let value of Object.values(this.state)) {
+      if (value === "") {
+        return true;
+      }
+    }
+    return false;
+  };
+
   render() {
     const { classes } = this.props;
+    const buttonDisabled = this.disableBtn();
+
     return (
       <Container className={classes.root} maxWidth="md">
         {this.props.errors.registrationMessage && (
@@ -72,7 +83,9 @@ class CreateNewAccountPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <Typography variant="h4" className={classes.title}>Create A New Account</Typography>
+        <Typography variant="h4" className={classes.title}>
+          Create A New Account
+        </Typography>
         <div className={classes.input}>
           <TextField
             id="outlined-basic"
@@ -85,6 +98,7 @@ class CreateNewAccountPage extends Component {
           <TextField
             className={classes.column}
             id="outlined-basic"
+            type="password"
             label="Password"
             variant="outlined"
             value={this.state.password}
@@ -189,6 +203,7 @@ class CreateNewAccountPage extends Component {
             Back to Login
           </Button>
           <Button
+            disabled={buttonDisabled}
             className={classes.btn}
             onClick={this.handleNext}
             variant="contained"
