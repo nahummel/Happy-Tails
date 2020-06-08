@@ -15,7 +15,7 @@ const styles = {
 class RegisterNew extends Component {
   state = {
     componentToShow: "userInfo",
-    activeStep: 1,
+    activeStep: 0,
   };
 
   handleCreateNewAccountClick = (user) => {
@@ -52,7 +52,6 @@ class RegisterNew extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = this.getSteps();
 

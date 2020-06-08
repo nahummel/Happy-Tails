@@ -17,7 +17,7 @@ const InfoPage = () => {
   return (
     <Container maxWidth="md">
       <Paper variant="outlined" className={classes.mission}>
-        <img src="dog-heart.jpg" />
+        <img src="dog-heart.jpg" alt="heart and dog"/>
         <Typography variant="h6" gutterBottom>
           Happy Tails Mission
         </Typography>
