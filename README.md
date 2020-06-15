@@ -1,13 +1,10 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# Happy Tails 
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Description
 
-## Download (Don't Clone) This Repository
+*Duration: 2 Week Sprint*
 
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+Every year thousands of dogs are surrendered to shelters and rescues due to behavioral issues. These issues typically stem from improper training and/or knowledge of the breed and temperament of their dog. Happy Tails is a full-stack web application that matches prospective dog owners to adoptable dogs. This is achieved by having both parties fill out a questionnaire that takes un information regarding their lifestyle. By using an algorithm each user will be able to see via a percentage how much the available dogs would fit into their lifestyle. The rescue side of the application has the ability to add, delete, and edit dog profiles as new dogs come, get adopted, or more information comes to light about the available dog. Happy Tails allow prospective dog owners to make a more informed decision when adopting a new dog. 
 
 ## Prerequisites
 
@@ -19,17 +16,49 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+Create a new database called `happ_tails` and create a `users`, `dogs`, and a `questionnaires` table:
 
 ```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
+CREATE TABLE "users" (
+     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "name" VARCHAR (20),
+    "street" VARCHAR (255),
+    "city" VARCHAR (50),
+    "state" VARCHAR (25),
+    "zipcode" INT,
+    "phone" INT,
+    "email" VARCHAR (255),
+    "user" BOOLEAN
+);
+
+CREATE TABLE "dogs" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR (50),
+    "breed" VARCHAR (50),
+    "sex" VARCHAR (6),
+    "age" INT,
+    "rescue_id" INT,
+);
+
+CREATE TABLE "questionnaires" (
+    "id" SERIAL PRIMARY KEY,
+    "size" VARCHAR (20),
+    "age_range" VARCHAR (10),
+    "sex" VARCHAR (6),
+    "rent_breed" BOOLEAN,
+    "other_dogs" BOOLEAN,
+    "cats" BOOLEAN,
+    "kids" BOOLEAN,
+    "grooming" BOOLEAN,
+    "active" BOOLEAN,
+    "training" BOOLEAN,
+    "health" BOOLEAN,
+    "dog_id" INT,
+    "user_id" INT
 );
 ```
-
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
@@ -110,6 +139,3 @@ This code is also heavily commented. We recommend reading through the comments, 
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
 
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
